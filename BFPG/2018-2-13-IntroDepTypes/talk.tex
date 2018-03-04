@@ -1,0 +1,124 @@
+\documentclass{beamer}
+ 
+\usepackage[utf8]{inputenc}
+
+\usepackage[newfloat]{minted}
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Listing}
+
+\title{An Introduction To Dependent Types}
+\author{Donovan Crichton}
+\date{February 2018}
+
+\begin{document}
+ 
+\frame{\titlepage}
+
+\begin{frame}[fragile]
+  \frametitle{A Brief Definition.}
+
+  \begin{block}{What are dependent types?}
+  \begin{itemize}
+    \item A dependent type is a type whose complete definition depends on
+  some value. 
+
+    \item This is very different to an ordinary paramterised ADT, where the
+  definition depends on the \alert{type} of the paramter(s) only.
+  \end{itemize}
+  \end{block}
+  \begin{block}{Ordinary ADT}
+  \begin{minipage}{0.5\textwidth}
+  \begin{minted}{haskell}
+  data MyType a = MyStr String a | MyInt Int a
+  \end{minted}
+  \end{minipage}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Recursive ADTs}
+  \begin{minipage}{1\textwidth}
+  \begin{minted}{haskell}
+  data Expr a
+    = I Int 
+    | B Bool 
+    | Add (Expr Int) (Expr Int) 
+    | And (Expr Bool) (Expr Bool)
+
+  --eval Int
+  f :: Expr a -> Maybe Int
+  f (I x)     = Just x
+  f (Add x y) = pure (+) <*> (f x) <*> (f y)
+  f _         = Nothing
+ 
+  --eval Bool
+  g :: Expr a -> Maybe Bool
+  g (B x)     = Just x
+  g (And x y) = pure (&&) <*> (g x) <*> (g y)
+  g _         = Nothing
+  \end{minted}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Type Class to the Rescue!}
+\begin{minipage}{1\textwidth}
+\begin{minted}{haskell}
+  data Expr a
+    = I Int 
+    | B Bool 
+    | Add (Expr Int) (Expr Int) 
+    | And (Expr Bool) (Expr Bool)
+
+  class Eval a where
+    eval :: Expr a -> a
+
+  instance Eval Int where
+    eval (I x)     = x
+    eval (Add x y) = (eval x) + (eval y)
+
+  instance Eval Bool where
+    eval (B x)     = x
+    eval (And x y) = (eval x) && (eval y)
+\end{minted}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Recursive ADTs - Problems}
+\begin{itemize}
+\item We'd like a way to apply a single function (eval) to our class of type
+  constructors (Expr).
+\item Type classes work for the previous example, but things start to go pear
+  shaped when we want to constrain our type constructors with type classes.
+\item More complicated expressions require multiple type parameters that are
+only used by a few type constructors.
+\item This example requires a deprecated extension, is generally
+considered poor practice, and more constraints = more complexity! \\
+\end{itemize}
+\begin{minipage}{1\textwidth}
+  \begin{minted}{haskell}
+  data Num a => Expr a
+    = N a
+    | B Bool
+    | Add (Expr a) (Expr a)
+    | And (Expr Bool) (Expr Bool)
+  \end{minted}
+\end{minipage}
+\end{frame}
+
+\begin{frame}
+\frametitle{GADTs}
+\begin{minipage}{1\textwidth}
+
+  \begin{minted}{haskell}
+  test
+  \end{minted}
+
+  \end{minipage}
+
+\end{frame}
+
+\end{document}
+

@@ -1,0 +1,23 @@
+
+An Accessible Introduction to Dependent Types - Donovan Crichton.
+
+This talk will introduce the concepts of dependently-typed programming from a
+use-case driven point of view. We'll introduce the fundamentals of dependent
+types and give you the basic tools needed to produce dependently typed
+programs in the functional language (that supports dependent types!) of your
+choice.
+
+Specifically we'll have examples from Haskell and Idris, showing where and how
+Haskell has support for dependently typed programs, and where Idris (which
+fully supports dependent types) can pick up the slack! This is a practical talk
+with no references to category theory or type theory, the concepts will come
+from everyday (and some not-so everyday) practical examples!
+
+We'll cover: GADTS and Closed Type Families in Haskell, and their equivalent in
+Idris (Dependent data-types and Type-level functions), and some examples from
+the problem that introduced the speaker to dependent types from the areas of 
+Artificial Intelligence and Domain Specified Languages.
+
+This is an intermediate-level talk and knowledge of the following would be very
+useful: Haskell/Idris Syntax (they're basically the same!), 
+Parameterised Data Types, and Functions.
