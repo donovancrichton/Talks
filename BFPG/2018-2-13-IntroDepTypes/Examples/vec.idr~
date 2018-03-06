@@ -1,0 +1,10 @@
+data Vec : Integral a => a -> Type -> Type where
+  Nil : Vec 0 a
+  (::) : (x : a) -> (xs : Vec n a) -> Vec (n + 1) a
+
+x : Vec 3 Char
+x = ?x_rhs
+
+
+
+
