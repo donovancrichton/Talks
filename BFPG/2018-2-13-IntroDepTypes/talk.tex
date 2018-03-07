@@ -242,9 +242,9 @@ doorProg = RingBell `Bind` \x ->
       exclude a greater number of invalid programs at compile time.
     \item Haskell does not fully support dependent types yet, but can get
       fairly close with a fair amount of work.
-    \item Closed type families require a lot of haskell extentions, additional
-      syntax, and boilerplate in the form of singletons, so we'll switch to
-      Idris for the remainder of the talk.
+    \item Key Haskell extensions are: DataKinds, KindSignatures, GADTs,
+          TypeFamilies and TypeOperators, along with knowledge of the
+          singletons library and Template Haskell.
   \end{itemize} 
 \end{frame}
 
@@ -324,8 +324,6 @@ y :: Vec (S (S (S (S Z)))) Char
 y = 'a' ::: 'b' ::: 'c' ::: Nil 
 \end{minted}
 \end{frame}
-
-
 
 \begin{frame}[fragile]
 \frametitle{Constraints as Types}

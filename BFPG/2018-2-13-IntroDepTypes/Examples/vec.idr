@@ -8,8 +8,10 @@ x : Vec 3 Char
 x = 'a' ::: 'b' ::: 'c' ::: VNil
 
 -- this wont typecheck!
-y : Vec 4 Char
-y = 'a' ::: 'b' ::: 'c' ::: VNil
+--y : Vec 4 Char
+--y = 'a' ::: 'b' ::: 'c' ::: VNil
+
+
 
 
 
