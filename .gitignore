@@ -1,0 +1,13 @@
+**/*.zip
+**/_minted*
+**/*.aux
+**/*.fdb_latexmk
+**/*.fls
+**/*.log
+**/*.out
+**/*.nav
+**/*.toc
+**/*.snm
+**/*.vrb
+**/*.swp
+**/*.*~

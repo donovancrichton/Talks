@@ -13,7 +13,8 @@
 \SetupFloatingEnvironment{listing}{name=Listing}
 
 \title{An Introduction To Dependent Types}
-\author{Donovan Crichton}
+\author{Donovan Crichton \\ https::/github.com/donovancrichton/talks.git}
+
 \date{February 2018}
 
 \begin{document}
@@ -98,9 +99,9 @@
 \item Type classes work for the previous example, but things start to go pear
   shaped when we want to constrain our type constructors with type classes.
 \item More complicated expressions require multiple type parameters that are
-only used by a few type constructors.
-\item This example requires a deprecated extension, is generally
-considered poor practice, and more constraints = more type parameters! \\
+  only used by a few type constructors.
+\item This example requires a deprecated extension, and is generally
+  considered poor practice.
 \end{itemize}
 \begin{minipage}{1\textwidth}
   \begin{minted}{haskell}
