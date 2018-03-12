@@ -53,7 +53,7 @@
   some value. 
 
     \item This is very different to an ordinary paramterised ADT, where the
-  definition depends on the \alert{type} of the parameter(s) only.
+  definition depends on the \alert{type} of the paramter(s) only.
   \end{itemize}
   \end{block}
   \begin{block}{Ordinary ADT}
@@ -240,7 +240,7 @@ finite state machine. Lets consider an automatic door: \\
 
 \begin{frame}[fragile]
 \frametitle{Type-Level Functions}
-Type-level functions allow a function from a value input, to a type output.
+Typel-level functions allow a function from a value input, to a type output.
 These then get paired with an ordinary (value-level) function which returns a
 type of the type-level function: \\ \\
 \begin{minipage}{1\textwidth}
@@ -327,13 +327,13 @@ y = 'a' ::: 'b' ::: 'c' ::: Nil
   pay-as-you-go approach.
 \item You're paying in verbosity! Type-level functions are required to be total
   in Idris, which means they must be defined for \textit{every} possible case.
-\item You're also paying in design complexity, the more elaborate the type
+\item You're also paying in design complexity, the more elbarate the type
   computation, the more difficult it is to reason about the types involved.
 \item Still worth it though!
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[allowframebreaks]
 \frametitle{References}
 \bibliographystyle{acm}
 \bibliography{references.bib}{}
