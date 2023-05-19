@@ -30,7 +30,7 @@
 \begin{frame}[fragile]
   \frametitle{Preliminaries}
   \begin{itemize}
-  \item Slides and Examples available at:
+  \item Slides and Examples agit remote set-url origin git@github.com:OWNER/REPOSITORY.git.vailable at:
     \url{https://github.com/donovancrichton/Talks}
   \item This talk: COMP1100/IntroToIdrisAndGADTS
   \end{itemize}
@@ -51,12 +51,13 @@
   \begin{minted}{haskell}
     {-# LANGUAGE GADTs #-}
     -- this is the data constructor
-    data Expr a where
+    data Expr :: * -> * where
     -- these are the type constructors:
       EInt :: Int -> Expr Int
       EBool :: Bool -> Expr Bool
       EAdd :: Expr Int -> Expr Int -> Expr Int
       EAnd :: Expr Bool -> Expr Bool -> Expr Bool
+      EIsZero :: Expr Int -> Expr Bool
   \end{minted}
 \end{frame}
 
