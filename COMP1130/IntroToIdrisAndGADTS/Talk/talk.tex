@@ -50,9 +50,9 @@
   What do GADTs actually look like?
   \begin{minted}{haskell}
     {-# LANGUAGE GADTs #-}
-    -- this is the data constructor
+    -- this is the type constructor
     data Expr :: * -> * where
-    -- these are the type constructors:
+    -- these are the data constructors:
       EInt :: Int -> Expr Int
       EBool :: Bool -> Expr Bool
       EAdd :: Expr Int -> Expr Int -> Expr Int
