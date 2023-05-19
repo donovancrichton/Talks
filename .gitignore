@@ -1,9 +1,16 @@
 **/*.zip
+**/build
+**/*.ttc
+**/*.ttm
 **/_minted*
+**/*.pygtex
 **/*.aux
 **/*.fdb_latexmk
 **/*.fls
 **/*.log
+**/*.tex.bak
+**/*.bbl
+**/*.blg
 **/*.out
 **/*.nav
 **/*.toc
