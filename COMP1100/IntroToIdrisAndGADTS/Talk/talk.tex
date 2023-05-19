@@ -97,13 +97,22 @@
       EBool :: Bool -> Expr Bool
       EAdd :: Expr Int -> Expr Int -> Expr Int
       EAnd :: Expr Bool -> Expr Bool -> Expr Bool
+      EIsZero :: Expr Bool -> Expr Int
 
     eval :: Expr a -> a
     eval (EInt x) = x
     eval (EBool b) = b
     eval (EAdd x y) = eval x + eval y
     eval (EAnd p q) = eval p && eval q
+    eval (EIsZero k) = (eval k) == 0
   \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{GADT Demo}
+  \begin{itemize}
+    \item let's see the demo.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
