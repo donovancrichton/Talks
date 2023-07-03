@@ -19,7 +19,7 @@ lemmaAddZeroRightNeutral (S k) =
 -- What is going on here? (rewrite + with lemma)
 (++) : {k : Nat} -> Vect k a -> Vect j a -> Vect (k + j) a
 (++) [] ys = ys
-(++) (x :: xs) [] = ?h1 -- (x :: xs)
+(++) (x :: xs) [] = rewrite lemmaAddZeroRightNeutral k in (x :: xs)
 (++) (x :: xs) ys = x :: xs ++ ys
 
 

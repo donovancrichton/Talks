@@ -1,0 +1,311 @@
+\documentclass[hyperref={colorlinks = true,linkcolor = blue, citecolor = blue, urlcolor = blue}]{beamer}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+ 
+\usepackage[utf8]{inputenc}
+
+\usepackage[newfloat]{minted}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{upquote}
+\usepackage{natbib}
+\usetikzlibrary{arrows,automata}
+
+\bibliographystyle{abbrvnat}
+
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Listing}
+
+\title{Towards Palatable Programming with Dependent Type Theories}
+\author{Donovan Crichton}
+  
+\date{May 2023}
+
+\begin{document}
+ 
+\frame{\titlepage}
+
+\begin{frame}[fragile]
+  \frametitle{Preliminaries}
+  \begin{itemize}
+  \item Slides and Examples available at:
+    \url{https://github.com/donovancrichton/Talks}
+  \item This talk: BFPG/PalatableProgrammingWithDTT
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{About me}
+\begin{itemize}
+  \item PhD Candidate, 
+        \\ Research School of Computing, 
+        \\ The Australian National University. \\
+        \small{Supervisors: Dr Dirk Pattinson, Dr Ranald Clouston, 
+               Dr Michael Norrish}
+  \item Visiting Scholar, 
+        \\ Trusted Systems Laboratory, 
+        \\ Institute for Integrated and Intelligent Systems, 
+        \\ Griffith University.
+  \item ANU-ASD Co-Lab Scholar, 
+        \\The Australian Signals Directorate.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Syntax}
+  What do GADTs actually look like?
+  \begin{minted}{haskell}
+    {-# LANGUAGE GADTs #-}
+    -- this is the data constructor
+    data Expr :: * -> * where
+    -- these are the type constructors:
+      EInt :: Int -> Expr Int
+      EBool :: Bool -> Expr Bool
+      EAdd :: Expr Int -> Expr Int -> Expr Int
+      EAnd :: Expr Bool -> Expr Bool -> Expr Bool
+      EIsZero :: Expr Int -> Expr Bool
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Limitations of Algebraic Data Types}
+  Imagine a list with a concrete constructor and a polymorphic one.
+  \begin{minted}{haskell}
+    -- this is just fine.
+    data List a =
+      Nil
+      | Cons a (List a)
+      | CInt Int (List Int)
+
+    -- this is not! 
+    tl :: List a -> List a
+    tl Nil = Nil
+    tl (Cons x xs) = xs
+    tl (CInt k ks) = ks
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Limitations of Algebraic Data Types 2}
+\begin{itemize}
+  \item If we \emph{parameterise} our data types we can't fix that parameter later.
+  \item In PLT, TT and Logic we have object and meta languages.
+  \item We would like to use the binding in our meta language for our object language.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Polymorphic Evaluation}
+  \begin{minted}{haskell}
+    {-# Langauge GADTs #-}
+    data Expr a where
+      EInt :: Int -> Expr Int
+      EBool :: Bool -> Expr Bool
+      EAdd :: Expr Int -> Expr Int -> Expr Int
+      EAnd :: Expr Bool -> Expr Bool -> Expr Bool
+      EIsZero :: Expr Bool -> Expr Int
+
+    eval :: Expr a -> a
+    eval (EInt x) = x
+    eval (EBool b) = b
+    eval (EAdd x y) = eval x + eval y
+    eval (EAnd p q) = eval p && eval q
+    eval (EIsZero k) = (eval k) == 0
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{GADT Demo}
+  \begin{itemize}
+    \item let's see the demo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Correctness by Construction}
+\begin{itemize}
+  \item GADTs now type-check our object language expressions in our meta language.
+  \item It is \emph{not possible} for me to accidentally write addition on Boolean expressions.
+  \item Idea - create your data structures in such away that they enforce correctness?.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Moving Away from Haskell}
+  \begin{itemize}
+    \item Extensions overload: PolyKinds, DataKinds, KindSignatures, KindAsType, etc.
+    \item Reification and Reflection: Haskell has two languages!
+    \item Just to get more expressivity and functionality for GADTS?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Stephanie Weirich's Dependent Haskell...}
+  Haskell looks different with just \emph{one} extension...
+  \begin{minted}{haskell}
+  {-# LANGUAGE DataKinds, TypeFamilies, PolyKinds, 
+      TypeInType, GADTs, RankNTypes, ScopedTypeVariables,
+      TypeApplications, TemplateHaskell, 
+      UndecidableInstances, InstanceSigs, 
+      MultiParamTypeClasses, TypeOperators, 
+      KindSignatures, TypeFamiliyDependencies, 
+      AllowAmbiguousTypes, FlexibleContexts, 
+      FlexibleInstances #-}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{To Idris!}
+  \begin{itemize}
+    \item Full Support for Dependent Types.
+    \item Pure Functional Language.
+    \item Syntactically Similar to Haskell.
+    \item Term and Type Languages are Identical.
+    \item It has a book \citep{brady2017type}.
+    \item My Favourite.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Installation (on Linux)}
+  The README on the repo has good installation instructions.
+  \begin{enumerate}
+    \item \colorbox{lightgray}{\$ sudo apt-get install chezscheme9,5}
+    \item \colorbox{lightgray}{\$ git clone https://github.com/idris-lang/idris2}
+    \item \colorbox{lightgray}{\$ cd idris2}
+    \item \colorbox{lightgray}{\$ make bootstrap SCHEME=chezscheme9.5}
+    \item \colorbox{lightgray}{\$ make install}
+    \item \colorbox{lightgray}{\$ make clean}
+    \item \colorbox{lightgray}{\$ make all}
+    \item \colorbox{lightgray}{\$ make install}
+    \item \colorbox{lightgray}{add ~/.idris2/bin to your system path}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{DDTS (GADTS) in Idris}
+  Strictness, loss of type inference.
+  \begin{minted}{idris}
+    data Expr : (a : Type) -> Type where
+      EVal : a -> Expr a
+      EAdd : Num a => Expr a -> Expr a -> Expr a
+      EAnd : Expr Bool -> Lazy (Expr Bool) -> Expr Bool
+
+    eval : Expr a -> a
+    eval (Eval x) = x
+    eval (EAdd x y) = (eval x) + (eval y)
+    eval (EAnd p q) = (eval p) && (eval q)
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Slim instead of Thick. Fat instead of Thin. Full of holes.}
+  \begin{itemize}
+    \item \mintinline{idris}{:} not \mintinline{haskell}{::}
+    \item \mintinline{idris}{(x :: xs)} not \mintinline{haskell}{(x : xs)}
+    \item \mintinline{idris}{=>} not \mintinline{haskell}{->}
+    \item \mintinline{idris}{?what}
+  \end{itemize}
+  \begin{minted}{idris}
+    f : Nat -> Nat
+    f x =
+      case x of
+       Z     => ?baseCaseHole
+       (S k) => ?stepCaseHole
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Gentle Dependent Types 1}
+  \begin{itemize}
+    \item We can \emph{index} our data types as well as \emph{parameterise} them.
+    \item The index may have a specific element in the return type, the parameter may not.
+    \item in \mintinline{idris}{List}, \mintinline{idris}{a} is a parameter. In 
+             \mintinline{idris}{Expr}, \mintinline{idris}{a} is an index.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Gentle Dependent Types 2}
+  We can be \emph{precise} about head and tail.
+  \begin{minted}{idris}
+    data Vect : Nat -> Type -> Type
+      Nil  : Vect Z a
+      (::) : a -> Vect k a -> Vect (S k) a
+
+    hd : Vect (S k) a -> a      
+    hd (x :: _) = x      
+      
+    tail : Vect (S k) a -> Vect k a      
+    tail (_ :: xs) = xs    
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Scary Dependent Types 1}
+  \begin{minted}{idris}
+    data (=) : a -> b -> Type where
+      Refl : a = a
+  \end{minted}
+  We can state equality between any two types. However we can only construct
+  an element of the equality type if \mintinline{idris}{a} and \mintinline{idris}{b}
+  are the same thing. \\ \\
+  This happens by beta reduction.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Scary Dependent Types 2}
+  Interactive Demo on defining (++)
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{itemize}
+    \item What is rewrite? Goal changing?
+    \item Also implicits?
+    \item More proofs like this, more practice? Port from Coq!
+    \item Read \href{https://softwarefoundations.cis.upenn.edu/lf-current/toc.html}{logical foundations} and
+           skip the tactics!
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Okay...but that's not a proof!}
+    \begin{itemize}
+      \item A proof based on intuitionistic higher order logic.
+      \item Thanks to the curry-howard isomorphism.
+      \item Commonly known as 'Propositions as Types' \citep{wadler2015propositions}.
+      \item As Phillip Wadler \href{https://www.youtube.com/watch?v=IOiZatlZtGU}{speaks about}.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Other Invariants}
+  \begin{itemize}
+    \item Sorted Lists
+    \item Ordered Binary Trees
+    \item What about Balanced BSTs?
+    \item let's see the demo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Who to talk to if I want more?}
+  \begin{itemize}
+    \item Lots of academics in SOC Foundations Cluster care 
+          about FP and Formal Methods.
+    \item Offhand: Dirk Pattinson, Ranald Clouston, Michael Norrish.
+    \item likely others!
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{References}
+\bibliography{references}{}
+\end{frame}
+
+
+\end{document}
+
