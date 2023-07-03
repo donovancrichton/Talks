@@ -47,17 +47,3 @@ ex3 = BBranch (BBranch (BLeaf 2) 3 (BLeaf 4))
               5
               (BLeaf 7)
 
--- how about this one?
-ex4 : BTree 2 5
-ex4 = BBranch (BBranch (BLeaf 2) 3 (BLeaf 4))
-              5
-              (BBranch (BLeaf 6) 7 (BLeaf 8))
-
--- this will not type check.
-ex5 : BTree 3 7
-ex5 = ?check
-      {- BBranch (BBranch (BBranch (BLeaf 1) 3 (BLeaf 4)) 
-                       5 
-                      (BLeaf 6))  
-              7 
-              (BLeaf 10) -}

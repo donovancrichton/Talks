@@ -9,13 +9,17 @@ data Vect : Nat -> Type -> Type where
   (::) : a -> Vect k a -> Vect (S k) a
 
 lemmaAddZeroRightNeutral : (k : Nat) -> plus k 0 = k
-lemmaAddZeroRightNeutral = ?hole
+lemmaAddZeroRightNeutral Z = Refl
+lemmaAddZeroRightNeutral (S k) =
+  let rec : (plus k 0) === k -- let expressions and = can be hard to parse.
+      rec = lemmaAddZeroRightNeutral k
+  in rewrite rec in Refl
 
 
 -- What is going on here? (rewrite + with lemma)
 (++) : {k : Nat} -> Vect k a -> Vect j a -> Vect (k + j) a
-(++) [] ys = ?h1
-(++) (x :: xs) [] = ?h2
-(++) (x :: xs) ys = ?h3
+(++) [] ys = ys
+(++) (x :: xs) [] = ?h1 -- (x :: xs)
+(++) (x :: xs) ys = x :: xs ++ ys
 
 
