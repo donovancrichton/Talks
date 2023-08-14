@@ -1,4 +1,4 @@
-package IdrisRose
+package Talk
 -- version =
 authors = "Donovan Crichton"
 -- maintainers =
@@ -16,7 +16,7 @@ authors = "Donovan Crichton"
 -- depends =
 
 -- modules to install
--- modules =
+modules = IdrisRoseBad, PiDiagramExample, PiGeneralExample, PiSpecificExample
 
 -- main file (i.e. file to load at REPL)
 -- main =

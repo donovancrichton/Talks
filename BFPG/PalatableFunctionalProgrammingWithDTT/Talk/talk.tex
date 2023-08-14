@@ -1,4 +1,7 @@
-\documentclass[hyperref={colorlinks = true,linkcolor = blue, citecolor = blue, urlcolor = blue}]{beamer}
+\documentclass
+  [hyperref={colorlinks = true,linkcolor = blue, 
+             citecolor = blue, urlcolor = blue}
+  ]{beamer}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}[frame number]
@@ -11,19 +14,22 @@
 \usepackage{tikz}
 \usepackage{upquote}
 \usepackage{natbib}
-\usetikzlibrary{arrows,automata}
+\usepackage[export]{adjustbox}
+
+\usetikzlibrary{arrows,automata,fit, shapes.geometric}
 
 \bibliographystyle{abbrvnat}
 
-
 \newenvironment{code}{\captionsetup{type=listing}}{}
 \SetupFloatingEnvironment{listing}{name=Listing}
+
+\setbeamertemplate{items}[square]
 
 \title{Towards Palatable Functional Programming with 
        Dependent Type Theories}
 \author{Donovan Crichton}
   
-\date{May 2023}
+\date{August 2023}
 
 \begin{document}
  
@@ -33,67 +39,261 @@
   \frametitle{Preliminaries}
   \begin{itemize}
   \item Slides and Examples available at:
-    \url{https://github.com/donovancrichton/Talks}
+    \href{https://github.com/donovancrichton/Talks}
+         {https://github.com/donovancrichton/Talks}
   \item This talk: BFPG/PalatableProgrammingWithDTT
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{About me}
-\begin{itemize}
-  \item PhD Candidate, 
-        \\ Research School of Computing, 
-        \\ The Australian National University. \\
-        \small{Supervisors: Dr Dirk Pattinson, Dr Ranald Clouston, 
-               Dr Michael Norrish}
-  \item Visiting Scholar, 
-        \\ Trusted Systems Laboratory, 
-        \\ Institute for Integrated and Intelligent Systems, 
-        \\ Griffith University.
-  \item ANU-ASD Co-Lab Scholar, 
-        \\The Australian Signals Directorate.
-\end{itemize}
+\begin{minipage}[t]{\linewidth}
+\noindent
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+       \includegraphics[width=\linewidth]
+         {Images/ANU.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{itemize}
+      \item 
+        \href{https://cecc.anu.edu.au/people/donovan-crichton}
+             {PhD Candidate}
+      \item 
+        \href{https://comp.anu.edu.au/research/clusters/computing-foundations/}
+             {Computing Foundations}
+      \item 
+        \href{https://comp.anu.edu.au/}
+             {School of Computing}
+    \end{itemize}
+  \end{minipage}
+\end{minipage}
+\hrule
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+      \includegraphics[scale=0.5,width=\linewidth]
+        {Images/GriffithLogo.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+  \begin{itemize}
+    \item Visiting Scholar
+    \item Trusted Systems Lab
+    \item \href{https://www.griffith.edu.au/institute-integrated-intelligent-systems}{IIIS}
+  \end{itemize}
+  \end{minipage}
+\hrule
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+      \includegraphics[width=\linewidth]
+        {Images/asd-logo.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+  \begin{itemize}
+    \item ASD 
+      \href{https://www.asd.gov.au/about/asd-anu-co-lab}{Co-Lab} 
+      Scholar
+  \end{itemize}
+  \end{minipage}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{A rose by any other name...}
-  \begin{minted}{haskell}
-module HaskellRose where
-{-# LANGUAGE GADTs #-}
-
-data Rose :: * -> * where
-  MkRose :: a -> [Rose a] -> Rose a
-
-instance Functor Rose where
-  fmap f (MkRose node children) = 
-    MkRose (f node) (fmap (fmap f) children)
-  \end{minted}
+  \frametitle{Recalling some definitions to get us started}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{...would NOT smell as sweet!}
-  \begin{minted}{idris}
-module IdrisRose
-%default total
-
-data Rose : Type -> Type where
-  MkRose : a -> List (Rose a) -> Rose a
-
--- Total, but not checked as total.
-implementation Functor Rose where
-  map f (MkRose node children) =
-    MkRose (f node) (map (map f) children)
-  \end{minted}
+  \frametitle{Rose Tree Maps: Haskell vs Idris}
+  The Idris code will not pass the totality checker.
+  \begin{minipage}{0.44\linewidth}
+    \inputminted{haskell}{../Code/src/HaskellRose.hs}
+  \end{minipage}
+  $\;$
+  \vline
+  $\;$
+  \begin{minipage}{0.5\linewidth}
+    \inputminted{idris}{../Code/src/IdrisRoseBad.idr}
+  \end{minipage}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{What is totality?}
-  
-\begin{frame}[fragile]
+\frametitle{What is a dependent type?}
+\setbeamercolor{block title}{fg=white,bg=orange!75!black}
+\setbeamercolor{block body}{fg=white,bg=orange!25!black}
+\begin{block}{Dependent Type(s): $\Pi_{x \in A}.B(x)$ instead of 
+ $\lambda_{x \in A}.B$}
+A dependent type is a type that \textit{depends} on a specific
+value of its input.
+\end{block}
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{$\lambda_{x \in A}.B$ in Idris code, in general.}
+\begin{minted}{idris}
+f : a -> b
+f x = ?somedefinition
+\end{minted}
+\end{block}
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{$\Pi_{x \in A}.B(x)$ in Idris code, in general.}
+\inputminted{idris}{../Code/src/PiGeneralExample.idr}
+\end{block}
+\end{frame}
 
+\begin{frame}[fragile]
+\frametitle{What is a dependent type? (concrete examples)}
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{$\lambda_{x \in A}.B(x)$ in Idris code, concretely.}
+\begin{minted}{idris}
+f : a -> List 
+f x = [x]
+\end{minted}
+\end{block}
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{$\Pi_{x \in A}.B(x)$ in Idris code, concretely.}
+  \inputminted{idris}{../Code/src/PiSpecificExample.idr}
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{What is a dependent type? (diagrammatically)}
+\begin{tikzpicture}
+% Boolean set
+\node (BTrue) at (0,7) {True};
+\node[below of=BTrue] (BFalse) {False};
+% Character set
+\node (StrA) at (6, 9) {`a'};
+\node[right of=StrA] (StrB) {`b'};
+\node[right of=StrB] (StrC) {`c'};
+\node[right of=StrC] (StrRest) {\ldots};
+% Natural Number set
+\node (Num1) at (6, 4) {0};
+\node[right of=Num1] (Num2) {1};
+\node[right of=Num2] (Num3) {2};
+\node[right of=Num3] (NumRest) {\ldots};
+% arrows
+\path[->] (BTrue) edge (StrB);
+\path[->] (BFalse) edge (Num2);
+% set ellipses
+\node[shape=ellipse,draw,minimum size=2cm,
+      fit={(StrA) (StrRest)}] {};
+\node[shape=ellipse,draw,minimum size=2cm,
+      fit={(Num1) (NumRest)}] {};
+\node[shape=ellipse,draw,minimum size=2cm,
+      fit={(BTrue) (BFalse)}] {};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{What is a Dependent Type? (diagrammatic example)}
+
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{Did you guess the right Idris type?}
+  \inputminted{idris}{../Code/src/PiDiagramExample.idr}
+\end{block}
+
+\setbeamercolor{block title}{fg=white,bg=green!55!black}
+\setbeamercolor{block body}{fg=white,bg=green!25!black}
+\begin{block}{What about $\Sigma_{x \in A}.B(x)$?}
+Dependent pairs can be constructed from $\Pi$ types if
+your language supports recursive algebraic data type
+definitions.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Why do we mean by totality? (good)}
+\setbeamercolor{block title}{fg=white,bg=orange!75!black}
+\setbeamercolor{block body}{fg=white,bg=orange!25!black}
+\begin{block}{Total Functions}
+A functions is \textit{total} if it terminates and is defined
+for all possible values for its domain.
+\end{block}
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{Functions that are total.}
+  \inputminted{idris}{../Code/src/TotalExample.idr}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Why do we mean by totality? (bad)}
+\setbeamercolor{block title}{fg=white,bg=orange!75!black}
+\setbeamercolor{block body}{fg=white,bg=orange!25!black}
+\begin{block}{Total Functions}
+A functions is \textit{total} if it terminates and is defined
+for all possible values for its domain.
+\end{block}
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{Functions that are \textit{not} total.}
+  \inputminted{idris}{../Code/src/TotalBadExample.idr}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Why do we care about totality?}
+\setbeamercolor{block title}{fg=white,bg=green!55!black}
+\setbeamercolor{block body}{fg=white,bg=green!25!black}
+\begin{block}{Can we type check this?}
+$f : \mathbb{N} \rightarrow \mathbb{N}$ \\
+$f = \lambda(x \in \mathbb{N}).f\;x$ \\
+$\;$\\
+$v : Vect\;k\;\alpha -> Vect\; (f\;k)\;\alpha$ \\
+$v\;xs = xs$
+\end{block}
+
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{Infinite recursion in types in Idris}
+  \inputminted{idris}{../Code/src/ForeverExample.idr}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Using the totality pragma.}
+
+\setbeamercolor{block title}{fg=white,bg=orange!75!black}
+\setbeamercolor{block body}{fg=white,bg=orange!25!black}
+\begin{block}{How Idris reduces $\Pi$ application in types.}
+Idris will \textit{only} reduce function application in types
+if the function has passed the totality checker.
+\end{block}
+
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{The totality checker blocks evaluation:}
+  \inputminted{idris}{../Code/src/ForeverExampleFail.idr}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Back to our rose tree example.}
+\setbeamercolor{block title}{fg=white,bg=green!55!black}
+\setbeamercolor{block body}{fg=white,bg=green!25!black}
+\begin{block}{Why does our rose tree Functor instance fail?}
+If map on lists is total, and our RoseTree is total. Why do we get
+errors when writing the functor instance?
+\end{block}
+
+% Show 
+\end{frame}
+
+
+\begin{frame}[fragile]
 \frametitle{References}
 \bibliography{references}{}
 \end{frame}
+
+
 
 
 \end{document}
