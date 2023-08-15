@@ -15,6 +15,9 @@
 \usepackage{upquote}
 \usepackage{natbib}
 \usepackage[export]{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{trfrac}
 
 \usetikzlibrary{arrows,automata,fit, shapes.geometric}
 
@@ -148,7 +151,7 @@ f x = ?somedefinition
 \frametitle{What is a dependent type? (concrete examples)}
 \setbeamercolor{block title}{fg=white,bg=purple!75!black}
 \setbeamercolor{block body}{fg=black,bg=white!80!gray}
-\begin{block}{$\lambda_{x \in A}.B(x)$ in Idris code, concretely.}
+\begin{block}{$\lambda_{x \in A}.B$ in Idris code, concretely.}
 \begin{minted}{idris}
 f : a -> List 
 f x = [x]
@@ -284,9 +287,387 @@ If map on lists is total, and our RoseTree is total. Why do we get
 errors when writing the functor instance?
 \end{block}
 
-% Show 
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{Map on lists is total:}
+  \inputminted{idris}{../Code/src/TotalMapList.idr}
+\end{block}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Back to our rose tree example (2).}
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{The definition of rose tree is total}
+  \inputminted{idris}{../Code/src/TotalMapList.idr}
+\end{block}
+\setbeamercolor{block title}{fg=white,bg=green!55!black}
+\setbeamercolor{block body}{fg=white,bg=green!25!black}
+\begin{block}{Is there a problem with our map definition?}
+\texttt{map f (MkRose x xs) = MkRose (f x) (map (map f) xs)}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{How totality checking actually works}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Syntactic Guardedness}
+  Idris (and all other dependently typed proof assistants) check
+  termination by means of a \textit{syntactic guard} condition.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{Recursive calls must be \textit{guarded} by a
+  destructor.}
+    \inputminted{idris}{../Code/src/GuardedRecursiveCall.idr}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{How totality checking actually works (2)}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{Corecursive calls must be \textit{guarded} by a
+  constructor, and correctly \textit{annotated} as Inf.}
+    \inputminted{idris}{../Code/src/GuardedCorecursiveCall.idr}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Summary of totality via syntactic guards}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{The \texttt{(map f)} call on our RHS does not
+    meet the syntactic guard restriction.}
+  \texttt{map f (MkRose x xs) = MkRose (f x) (map (map f) xs)}
+  \end{block}
+  \begin{itemize}
+    \item Syntactic guards do not work well with HOF.
+    \item Inf for corecursion is broken.
+    \item Most corecursive approaches are broken (sized types,
+    delay/force, infinity) what about co-patterns?
+    \item Manual proofs of well-foundedness can be onerous.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Introducing Type Theory}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Components of a Type Theory}
+  A Type Theory consists of a Grammar, a set of judgement rules, 
+  a set of desirable properties that are proven to hold, and
+  a given semantics.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=green!75!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{Why do we need all this?}
+  In a dependently typed setting, the PAT (Propositions-As-Types)
+  interpretation is assumed to hold. Alterations to any of these
+  features (i.e extra syntactic annotations, different type
+  checking algorithms, etc) can break the desirable properties
+  and in the worst case, allow you to prove things that are not
+  true.
+  \end{block}
+
+    %grammar
+  %rules
+  %proofs of desirable properties
+  %consistency
+  %canonicity
+  %normalization
+  %decidability
+  %attached semantics
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Grammar (Parsed Lexemes)}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{What is a grammar?}
+    A formal set of syntax used in the definition of your
+    type theory, usually given in BNF.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{An example grammar for a dependent type theory}
+  \begin{align*}
+    \Gamma ::=&\;\diamond \;|\; \Gamma, x : S \\
+    S, T, U ::=&\;(x : S) \rightarrow T \;|\; (x : S) \otimes T 
+                \;|\; El(M) \\& \;|\; Bool \;|\; Unit 
+                  \;|\; \mathcal{U} \\
+    P, M, N ::= &\;x \;|\; \Pi (x : S).M \;|\; M \; N \;|\; True
+                  \;|\; False \\
+             &\;|\; \star \;|\; fst\;M \;|\; snd\;M 
+                  \;|\; If\;P_{Bool} \; M \; N
+  \end{align*}
+  \end{block}
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Rules - Type Formers (Type Constructors)}
+  \begin{minipage}{\linewidth}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Type Formers}
+   A type formation rule is analogous to a type constructor.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{List Type Constructor in Idris}
+  \begin{minted}{idris}
+  data List : (s : Type) -> Type where
+  \end{minted}
+  \end{block}
+  \end{minipage}
+  \[
+   \trfrac[\small(\emph{ListTy})]
+     {\Gamma \vdash S : \mathcal{U}}
+     {\Gamma \vdash \text{List } S : \mathcal{U}}
+  \]
+  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Rules - Term Formers (Data Constructors)}
+  \begin{minipage}{\linewidth}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Term Formers}
+   A term formation rule is analogous to a data constructor.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{List Data Constructors in Idris}
+  \begin{minted}{idris}
+  data List : (s : Type) -> Type where
+    Nil : List a
+    (::) : a -> List a -> List a
+  \end{minted}
+  \end{block}
+  \end{minipage}
+  \[
+   \trfrac[\small(\emph{Nil})]
+     {\Gamma \vdash S : \mathcal{U} \qquad \Gamma 
+      \vdash \text{List } S : \mathcal{U}}
+     {\Gamma \vdash \left[ \right] : \text{List } S}
+  \]
+  \[
+   \trfrac[\small(\emph{Cons})]
+     {\Gamma \vdash S : \mathcal{U} \qquad 
+      \Gamma \vdash \text{List } S : \mathcal{U}
+      \qquad \Gamma \vdash x : S \qquad \Gamma \vdash
+      xs : \text{List } S}
+     {\Gamma \vdash x :: xs : \text{List } S}
+  \]
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Properties}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Normalisation}
+  Prove that all terms reduce to an irreducible normal form.
+  I.e show that evaluation of terms eventually stops.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Canonicity}
+  Prove that every closed computation (evaluation in an empty
+  context) of a type results in a singular canonical value.
+  i.e for every term of $\diamond \vdash x : \mathbb{N}$ 
+  we get a natural number literal when we evaluate.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Consistency}
+  Prove that we cannot derive $\bot$, which in dependent 
+  type theories is the type with no terms.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Decidability}
+  Give a decision procedure for type checking, i.e an
+  algorithm that for all $\Gamma \vdash x : A$ we can
+  determine if $x \in A$ or not.
+  \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Semantics}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{If we're just manipulating symbols, how can we
+  prove theorems in `real' mathematics?}
+  We need a \textit{semantics} for our syntax. A mapping of some
+  area of mathematics to our symbols and back. Common semantics
+  are denotational, operational, and axiomatic. See e.g 
+  \citep{winskel1993formal}
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{Which one do we use?}
+  One of many category theoretic semantics used for dependent
+  types is categories with families...also used are categories 
+  with attributes, comprehension
+  categories, display map categories, natural models, contextual
+  categories. \\ Sadly beyond the scope of this talk (and me, for
+  the moment!)
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Guarded Dependent Type Theory}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{All this talk of type theory...what about our
+  Totality problem?}
+  A promising alternative approach may be a type-directed
+  approach to guardedness, instead of a syntactic one.
+  \end{block}
+
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Guarded Dependent Type 
+    Theory \citep{bizjak2016guarded}}
+  ``We present guarded dependent type theory, gDTT, an 
+    extensional dependent type theory with a ‘later’ modality 
+    and clock quantiﬁers for programming and proving with guarded
+    recursive and coinductive types. The later modality is 
+    used to ensure the productivity of recursive deﬁnitions in 
+    a modular, type based, way.''
+  \end{block}
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Extensionality and Intensionality}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Extensionality}
+  Two objects may be judged to be equal if they have the same
+  external properties.
+  Best seen in functional extensionality: $f = g \iff \forall x, f(x) = g(x)$
+  \end{block}
+  
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Intensionality}
+  Two objects may be judged to be equal if they have the same
+  internal properties. In practice, two expressions may be 
+  judged equal if they reduce to the same normal form.
+  \end{block}
+
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{Intensional Equality in Idris}
+  \inputminted{idris}{../Code/src/IntensionalEquality.idr}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Observational Type Theory}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{GDTT is extensional but Idris is
+  intensional?}
+  Fortunately, not all is lost. There have been recent advanced
+  in other dependent type theories that promise \textit{just}
+  enough extensionality to get the job done.
+  \end{block}
+
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Observational Type 
+    Theory \citep{altenkirch2007observational} \\
+    \citep{pujet2022observational}}
+    ``Building on the recent extension of dependent type 
+      theory with a universe of definitionally 
+      proof-irrelevant types, we introduce $TT_{obs}$, a 
+      new type theory based on the setoidal interpretation 
+      of dependent type theory. $TT_{obs}$ equips every type 
+      with an identity relation that satisfies 
+      function extensionality, propositional extensionality, 
+      and definitional uniqueness of identity proofs (UIP).''
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Quantitative Type Theory}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{Idris has quantities?}
+  Idris is (mostly) based on a linear dependent type theory
+  with the hope that programmers can use this to formally
+  prove properties about execution times and memory usage.
+  This means we're still missing a step!
+  \end{block}
+
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Quantitative Type Theory \citep{atkey2018syntax}}
+  ``We present Quantitative Type Theory, a Type Theory that
+  records usage information for each variable in a judgement,
+  based on a previous system by McBride. The usage information is
+  used to give a realizability semantics using a variant of
+  Linear Combinatory Algebras, refining the usual realizability
+  semantics of Type Theory by accurately tracking resource
+  behaviour.''
+  \end{block}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Towards $GOLD_{tt}$ - Construction via Formalisation}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{\textit{Finally! I can talk about my PhD!}}
+  Work towards a Guarded, Observational, Linear, Dependent, Type
+  Theory ($GOLD_{tt}$) that allows us to combine features from
+  all theory type theories.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Formalisation}
+  To \textit{Formalise} or \textit{Mechanise} a type theory
+  is to encode it in a proof assistant where machine checked
+  proofs are given for as many of the components that make
+  up a type theory as possible.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{Methodology}
+  Formalise each type theory in turn to get deep insights about
+  the inner workings. \\
+  Then Formalise $GOLD_{tt}$. \\
+  Then Give category theoretic semantics.
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Closing and ANU Plug}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{ANU is looking for PhD Students in Formal
+  Methods!}
+  The Computing Foundations cluster at the School of Computing, The
+Australian National University, have multiple PhD scholarships available in
+areas relevant to the types community, including logic, programming
+languages, systems, formal methods, theory and software engineering.
+
+If you want to do cutting edge research in any of these fields, or a mix
+thereof, visit our
+\href{https://comp.anu.edu.au/research/clusters/computing-foundations/}{page}
+and get in touch with any of the staff listed. \\ 
+Please also contact Michael
+Norrish (cluster lead) for further details.
+  \end{block}
+Thank you!
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{References}

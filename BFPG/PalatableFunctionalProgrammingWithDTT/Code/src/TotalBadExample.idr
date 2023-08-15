@@ -1,6 +1,6 @@
 module TotalBadExample
-contradiction : Bool -> Bool
-contradiction True = False
+contradiction1 : Bool -> Bool
+contradiction1 True = False
 
-contradiction : Bool -> Bool
-contradiction x = not $ contradiction x
+contradiction2 : Bool -> Bool
+contradiction2 x = not $ contradiction x
