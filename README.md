@@ -15,8 +15,11 @@ middle of my PhD in early 2023.
      Theories](#towards-palatable-functional-programming-with-dependent-type-theories)
   * [Introduction to Idris and GADTs](#introduction-to-idris-and-gadts)
 
+## Talk Links
+The link to each talk is usually the first word of the 
+description.
 ### Why is so much of FP about Types instead of Functions?
-  [This](/BFPG/WhyIsFLAboutTypes/Talk) was a short and 
+  [This](/BFPG/WhyIsFPAboutTypes/Talk) was a short and 
   informal introductory talk given to the [Brisbane Functional Programming
   Group](https://www.meetup.com/brisbane-functional-programming-group) which introduces the notion of a function and 
   describes their limitations, and why types tend to take
