@@ -1,0 +1,386 @@
+\documentclass
+  [hyperref={colorlinks = true,linkcolor = blue, 
+             citecolor = blue, urlcolor = blue}
+  ]{beamer}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+ 
+\usepackage[utf8]{inputenc}
+
+\usepackage[newfloat]{minted}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{upquote}
+\usepackage{natbib}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{trfrac}
+
+\usetikzlibrary{arrows,automata,fit, shapes.geometric}
+
+\bibliographystyle{abbrvnat}
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Listing}
+
+\setbeamertemplate{items}[square]
+
+\renewcommand{\thempfootnote}{\arabic{mpfootnote}}
+
+\newcommand{\Set}{
+
+}
+
+\title{Why is so much of FP about Types instead of Functions?}
+\author{Donovan Crichton}
+  
+\date{October 2023}
+
+\begin{document}
+ 
+\frame{\titlepage}
+
+\begin{frame}[fragile]
+  \frametitle{Preliminaries}
+  \begin{itemize}
+  \item Slides and Examples available at:
+    \href{https://github.com/donovancrichton/Talks}
+         {https://github.com/donovancrichton/Talks}
+  \item This talk: BFPG/WhyIsFPAboutTypes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{About Me}
+\begin{minipage}[t]{\linewidth}
+\noindent
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+       \includegraphics[width=\linewidth]
+         {Images/ANU.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{itemize}
+      \item 
+        \href{https://cecc.anu.edu.au/people/donovan-crichton}
+             {PhD Candidate}
+      \item 
+        \href{https://comp.anu.edu.au/research/clusters/computing-foundations/}
+             {Computing Foundations}
+      \item 
+        \href{https://comp.anu.edu.au/}
+             {School of Computing}
+    \end{itemize}
+  \end{minipage}
+\end{minipage}
+\hrule
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+      \includegraphics[scale=0.5,width=\linewidth]
+        {Images/GriffithLogo.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+  \begin{itemize}
+    \item Visiting Scholar
+    \item Trusted Systems Lab
+    \item \href{https://www.griffith.edu.au/institute-integrated-intelligent-systems}{IIIS}
+  \end{itemize}
+  \end{minipage}
+\hrule
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+      \includegraphics[width=\linewidth]
+        {Images/asd-logo.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+  \begin{itemize}
+    \item ASD 
+      \href{https://www.asd.gov.au/about/asd-anu-co-lab}{Co-Lab} 
+      Scholar
+  \end{itemize}
+  \end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{What is a Function?}
+\begin{minipage}{0.8\linewidth}
+  \begin{figure}[h]
+  \includegraphics
+    [scale=0.3, width=0.6\linewidth]
+    {Images/Function_machine.png}
+  \caption[A "black-box" depiction of a function.]{A
+  "black-box" depiction of a function\protect\footnote[1]{Source \protect\url{https://en.wikipedia.org/wiki/Function_(mathematics)\#/media/File:Function_machine2.svg}}}
+  \end{figure}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{What can we do with a function?}
+  \begin{itemize}[<+->]
+    \item Give it its argument.
+    \item Look at its result.
+    \item ...
+    \item ...
+    \item Maybe we need to think about this some more...
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{What is a function, Georg Cantor?}
+\begin{minipage}{0.8\linewidth}
+  \begin{figure}[h]
+  \includegraphics
+    [scale=0.1, width=0.5\linewidth]
+    {Images/Georg_Cantor.jpg}
+  \caption[Georg Cantor (1845 - 1918)]{Georg Cantor (1845 -
+  1918)\protect\footnote[1]{Source
+  \protect\url{https://en.wikipedia.org/wiki/Georg_Cantor\#/media/File:Georg_Cantor_(Portr\%C3\%A4t).jpg}}}
+  \end{figure}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Sets}
+  \begin{itemize}[<+->]
+    \item Sets are concerened with collections of discrete
+          mathematical objects. \\
+          e.g $A = \{1, 2, 3, ...\}$.
+    \item The order of elements does not matter.
+    \item Each element my appear only once.
+    \item Given an set $X$ and an index $i$ we may 
+          chose $x_i \in X$. Think of this like a function
+          $f : (Set(X), \mathbb{N}) \rightarrow X$. \\
+          e.g $f(A,2) = 2$.
+    \item See \citep{halmos1960naive} for more!
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Relations}
+
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functions}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{What can we do with set-theoretic functions?}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{What can we do with functions, Alonzo Church?}
+\begin{minipage}{0.8\linewidth}
+  \begin{figure}[h]
+  \includegraphics
+    [scale=0.3, width=0.5\linewidth]
+    {Images/Alonzo_Church.jpg}
+  \caption[Alonzo Church (1903 - 1995)]{Alonzo Church (1903 -
+  1995)\protect\footnote[1]{Source \protect\url{https://en.wikipedia.org/wiki/Alonzo_Church\#/media/File:Alonzo_Church.jpg}}}
+  \end{figure}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{The Untyped Lambda Calculus}  
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{The Grammar for LC.}
+  \begin{align*}
+    M, N ::= & \; x, y, z, ...  &\text{Variables.} \\
+             &| \; \lambda x.N  &\text{Abstraction.} \\
+             &| \; M \; N       &\text{Application}
+  \end{align*}  
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{An Idris Example (some liberties with types) 
+  \\ $\lambda x.\lnot x \; \text{True}$}
+  \inputminted{idris}{../Code/src/Lambda.idr}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{What can we do with lambda calculi functions?}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functions are boring!}
+  \setbeamercolor{block title}{fg=black,bg=green!95!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{Can we apply any function to any argument?}
+  Clearly we cannot, saying $(3 < 7) + 12$ does not make
+  sense, nor does $ (-4) \lor 7$. 
+  \\ Operations are often defined as being closed under 
+  a particular set. \\
+  Closures are really speaking about the type of operations.
+  \end{block}
+  \setbeamercolor{block title}{fg=black,bg=green!95!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{Are there other ways we can catgorise
+    functions besides the type of their input and output?}
+  We can also classify functions based on properties of their
+  behaviour. Sometimes we don't care what specific types
+  a function operates on, so long as there is some valid
+  operation defined for those types.
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Diagrams of types.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Diagrams of behavioural properties.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{To functional programming}
+\setbeamercolor{block title}{fg=white,bg=orange!75!black}
+\setbeamercolor{block body}{fg=white,bg=orange!25!black}
+\begin{block}{Question for the pub!}
+Why are functions the default 'building-blocks' in most
+programming languages? Why not relations?
+\end{block}
+
+\setbeamercolor{block title}{fg=black,bg=green!95!black}
+\setbeamercolor{block body}{fg=white,bg=green!25!black}
+\begin{block}{Is everything really a function? (Really?)}
+The argument goes that a pure functional language is just
+an elaboration of some variant of a typed lambda calculus.
+Let's briefly investigate this.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Values as functions.}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{Are these functions the same?}<1->
+  \inputminted{idris}{../Code/src/Values.idr}
+  \end{block}
+
+  \setbeamercolor{block title}{fg=black,bg=green!95!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{The humble unit type.}<2->
+  The unit type is special.
+  Denoted \mintinline{idris}{()} or $\top$, the unit type is
+  defined as having only one single element, also
+  \mintinline{idris}{()}, or sometimes $\ast$.
+  The unit element can \textit{always} be constructed.
+  This implies that \mintinline{idris}{seven} is the same as
+  \mintinline{idris}{seven'} as we can always construct the 
+  argument to \mintinline{idris}{seven'}.
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Data types as functions.}
+  \setbeamercolor{block title}{fg=black,bg=green!95!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{Can we do the same with data types?}<1->
+    We can see this with church encoding, and have a
+    small example below, interested readers should see
+    \cite[p. 58-68]{pierce2002types}.
+  \end{block}
+
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{Church encoding of the Boolean type}<2->
+    \inputminted{idris}{../Code/src/ChurchBools.idr}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Algerbraic Data Types}
+  \setbeamercolor{block title}{fg=black,bg=green!95!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{Sum Types}
+  The sum type is analogous to disjoint union in set theory.
+  $A + B$ can be construct from either $x \in A$ or $y \in B$
+  provided we tag the origin set.
+  \end{block}
+
+  \setbeamercolor{block title}{fg=black,bg=green!95!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{Product Types}
+  
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Conclusion}
+
+  \setbeamercolor{block title}{fg=black,bg=green!95!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{}
+  \end{block}
+\end{frame}
+% question for the pub. Tension between 
+
+% Introduce Georg Cantor for sets
+%  - Arguably introduced in 1978
+%  - No Bijection between Natural Numbers and real numbers?
+%  - Both sets are infinite but there are more of one.
+
+% Introduce Alonzo Church for lambda calculus
+% Find out who introduced generics
+% Find out who introduced parametric and ad-hoc polymorphism
+% Introduce those two
+% 
+
+%Question for the pub: Why are 'functions' the basic building
+%block in programming languages instead of relations?
+%arguably relations are written just as often and are
+% strict superset of functions!
+
+%Question: Is everything really a function? Show 7 () :: Int
+%instead of 7 :: Int
+
+
+% Functions are boring!
+% All we can do with them is apply them to their arguments.
+% The second we start asking if we can apply functions to the
+% result of other functions we composition.
+% When we get composition, we start asking well does it make
+% sense to compose two functions.
+% Now we get types.
+% Types cause tension between composability and safety.
+% Even(N) does not compose with N but a domain taking an
+% N for an input when we care about even N forces us to
+% consider undefined behaviour.
+% Functional Programming is about 'reducing unintended side
+% affects"
+% Undefined behaviour is an unintended side effect!
+
+
+
+%in general I want to say that in programming
+
+% Cover: zSets, Relations, Functions, Partial and Total
+% Functions
+
+% Cover: Lambda Calculus
+
+% Cover: 
+
+\begin{frame}[fragile]
+\frametitle{References}
+\bibliography{references}{}
+\end{frame}
+
+
+
+
+\end{document}
+
