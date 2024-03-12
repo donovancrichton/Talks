@@ -1,8 +1,7 @@
 module Sum
 %default total
+%hide Prelude.Either
 
 data Either : Type -> Type -> Type where
-  Left : a -> Sum a b
-  Right : b -> Sum a b
-
-
+  Left : a -> Either a b
+  Right : b -> Either a b

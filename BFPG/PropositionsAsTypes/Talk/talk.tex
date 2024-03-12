@@ -1,0 +1,330 @@
+\documentclass
+  [hyperref={colorlinks = true,linkcolor = blue, 
+             citecolor = blue, urlcolor = blue}
+  ]{beamer}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamercolor{itemize item}{fg=white}
+ 
+\usepackage[utf8]{inputenc}
+
+\usepackage[newfloat]{minted}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{upquote}
+\usepackage{natbib}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{trfrac}
+
+\usetikzlibrary{arrows,automata,fit, shapes.geometric}
+
+\bibliographystyle{abbrvnat}
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Listing}
+
+\setbeamertemplate{items}[square]
+
+\title{Introduction to Propositions as Types}
+\author{Donovan Crichton}
+  
+\date{March 2024}
+
+\begin{document}
+ 
+\frame{\titlepage}
+
+\begin{frame}[fragile]
+  \frametitle{Preliminaries}
+  \begin{itemize}
+  \item Slides and Examples available at:
+    \href{https://github.com/donovancrichton/Talks}
+         {https://github.com/donovancrichton/Talks}
+  \item This talk: BFPG/PropositionsAsTypes
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{About me}
+\begin{minipage}[t]{\linewidth}
+\noindent
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+       \includegraphics[width=\linewidth]
+         {Images/ANU.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+    \begin{itemize}
+      \item 
+        \href{https://comp.anu.edu.au/people/donovan-crichton/}
+             {PhD Candidate}
+      \item 
+        \href{https://comp.anu.edu.au/research/clusters/computing-foundations/}
+             {Computing Foundations}
+      \item 
+        \href{https://comp.anu.edu.au/}
+             {School of Computing}
+    \end{itemize}
+  \end{minipage}
+\end{minipage}
+\hrule
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+      \includegraphics[scale=0.5,width=\linewidth]
+        {Images/GriffithLogo.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+  \begin{itemize}
+    \item Visiting Scholar
+    \item Trusted Systems Lab
+    \item \href{https://www.griffith.edu.au/institute-integrated-intelligent-systems}{IIIS}
+  \end{itemize}
+  \end{minipage}
+\hrule
+  \begin{minipage}{0.5\linewidth}
+    \begin{figure}[h]
+      \includegraphics[width=\linewidth]
+        {Images/asd-logo.png}
+    \end{figure}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\linewidth}
+  \begin{itemize}
+    \item ASD 
+      \href{https://www.asd.gov.au/about/asd-anu-co-lab}{Co-Lab} 
+      Scholar
+  \end{itemize}
+  \end{minipage}
+\end{frame}
+
+% Okay, what do I want to cover here?
+% I want to introduce the concept of a proposition
+% I want to introduce the concept of a theorem
+% I want to introduce the concept of a type
+% I want to introduce the curry-howard isomorphism
+% I want to talk about isomorphsim vs equality
+% 
+
+\begin{frame}[fragile]
+  \frametitle{Proving Theorems $\cong$ Writing Programs - Overview}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{The PAT (Propositions as Types) Interpretation}
+    \begin{itemize}
+      \item Types are logical propositions or theorems.
+      \item An inhabitant or element of the type is the proof.
+      \item Strictly speaking an isomorphism that holds under specific
+      conditions.
+    \end{itemize}
+  \end{block}
+  % Why is this important?
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Uses for the PAT Interpretation}
+    \begin{itemize}
+      \item Used by mathematicians and logicians to \textit{formalise} or
+            \textit{mechanise} mathematics and logic.
+      \item Used by software developers to provide a stronger guarantee of
+            functional correctness than testing.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Proving Theorems $\cong$ Writing Programs - Applications}
+  % Who uses this in anger?
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Applications}
+    \begin{itemize}
+      \item In defense/security: guarantees for software security.
+      \item In aeronautics and naval agencies: guarantees for software
+      properties that control hardware.
+      \item In fin-tech: guarnatees for software properties that involve
+      transactions.
+      \item Suitable for any application where the cost of a failed test
+            after deployment is just too high.
+    \end{itemize}
+  \end{block}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Propostions - Refresher}
+% What is a proposition
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{What is a proposition?}
+  A statement or assertion that expresses a judgement, usually readily
+  apparent or verifiable.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Examples of a proposition}
+    \begin{itemize}
+      \item ``It is raining outside.''
+      \item ``Terry is the child of Leigh.''
+      \item Sometimes formally denoted: 
+            \\ Let $p$ denote ``It is raining outside.''
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Theorems - Refresher}
+% What is a theorem
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{What is a theorem?}
+  A more general proposition that is less readily-apparent, usually requires
+  a chain of reasoning to be accepted, or 'proven'.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Examples of Theorems}
+    \begin{itemize}
+      \item ``If Terry has a child $r$, and Terry is the child of Leigh, then
+      $r$ is the grandchild of Leigh.''
+      \item ``For all natural numbers $x$ and $y$, and given the addition
+      operation ($+$), then $x + y$ is equal to $y + x$.''
+      \item ``There is at least one weekday occuring in the future.''
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Proofs - Refresher}
+% What is a proof
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{What is a poof?}
+    The chain of formal reasoning that, when followed, always verifies a
+    theorem.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Examples of Proof sketches}
+    \begin{itemize}
+      \item Grandchild is defined as "The child of a person's child." Thus,
+      under this definition, this holds.
+      \item Use a lemma (a smaller proof) to show that $x + 0 = 0 + x$ by
+      definition of $+$. Then apply the induction hypothesis for all other
+      cases.
+      \item This is more complicated. We could use an inductive, discrete definition of
+      ``future'', and show that after so many iterations a new day occurs.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Types - Refresher}
+% What is a type?
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{What is a type?}
+  We often think of types in two forms, one computational, and one
+  mathematical.
+    \begin{itemize}
+      \item A type is a way to interpret the series of bits that represent a
+      value to distinguish it from other values that are encoded with the same
+      bit representation. 
+      \item A type is a ``set'' of elements that inhabit the type.
+    \end{itemize}
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Examples of Types}
+    \begin{itemize}
+      \item Take the binary number 1100001. Does this represent the positive
+      integer 1,100,001? The letter `a' on the keyboard? Or the decimal value
+      of 97?
+      \item $\mathbb{B}$ denotes the set of Boolean values: \{True, False\}.
+      \item $\mathbb{Z}$ denotes the set of Integer values: \{..., -2, -1, 0,
+      1, 2, ...\}.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Elements/Inhabitants - Refresher}
+% What is an inhabitant of a type
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{What is an element or inhabitant of a type?}
+    One of the members of the set that characterises a type.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Examples of elements of types.}
+    \begin{itemize}
+      \item Ordinary values: Such as \{True,False\} from $\mathbb{B}$.
+      \item Data Types:  \\ 
+        \{(``Nil'', $\ast \rightarrow$ List A), (``Cons'', A
+      $\rightarrow$ List A $\rightarrow$ List A)\}.
+      \item Codata Types: \{(``hd'', List A $\rightarrow$ A), (``tl'', List A
+      $\rightarrow$ List A)\}.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{The CHL Correspondance - Computational Trinitarianism}
+  % draw a graph with arrows between Curry, Howard, and Lambeck
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Isomorphism vs Equality}
+  % define isomorphsim and equality
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Intuitionistic Logic $\cong$ STLC}
+  % Point out that it can hold for languages isomorphic to STLC 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Types and Props - Implication}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Types and Props - Conjuction}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Types and Props - Disjunction}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Types and Props - Negation}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Types and Props - Quantifiers?}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Types and Props - Quantifiers (and Language)}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Examples - Linked List Invariants and Vectors}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{References}
+\bibliography{references}{}
+\end{frame}
+
+\end{document}
+

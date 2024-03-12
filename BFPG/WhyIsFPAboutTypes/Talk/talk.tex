@@ -30,10 +30,6 @@
 
 \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
 
-\newcommand{\Set}{
-
-}
-
 \title{Why is so much of FP about Types instead of Functions?}
 \author{Donovan Crichton}
   
@@ -151,7 +147,7 @@
 \begin{frame}[fragile]
 \frametitle{Sets}
   \begin{itemize}[<+->]
-    \item Sets are concerened with collections of discrete
+    \item Sets are concerned with collections of discrete
           mathematical objects. \\
           e.g $A = \{1, 2, 3, ...\}$.
     \item The order of elements does not matter.
@@ -166,16 +162,59 @@
 
 \begin{frame}[fragile]
 \frametitle{Relations}
+\begin{itemize}
+  \item <1-> A relation is a set of pairs and specifically
+        is useful for denoting a one-to-many relationship. 
+  \item<2-> i.e $1 < 2$, $1 < 3$, $1 < 4$ and so on.
+  \item<3-> To the WHITEBOARD\footnote<3->{I sadly did not have
+  time to typeset this diagram for tonight's talk, but I will
+  upload the completed diagram to GitHub before the end of
+  the week.} for a demo.
+\end{itemize}
 
+\setbeamercolor{block title}{fg=white,bg=orange!75!black}
+\setbeamercolor{block body}{fg=white,bg=orange!25!black}
+\begin{block}{Question for the pub!}<4->
+Why are functions the default 'building-blocks' in most
+programming languages? Why not relations? All
+functions are relations, but not all relations are functions.
+\end{block}
 
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Functions}
+  \begin{itemize}
+    \item<1-> Functions can have a one-to-one, or many-to-one
+          relationship, but never one-to-many.
+    \item<2-> There are special classes of \textit{injective}
+          functions, where every input gives only one
+          output, and all outputs are distinct from
+          one-another.
+    \item<3-> There are special classes of \textit{surjective}
+          functions, where the entire output set can be
+          reached through one-or-more inputs.
+    \item<4-> Functions that are surjective and injective are
+          said to be \textit{bijective}.
+    \item<5-> To the WHITEBOARD\footnote<5->{As before, I will
+    typeset the accompanying diagrams and upload online.} for
+    a demo.
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{What can we do with set-theoretic functions?}
+  \begin{itemize}
+    \item<1-> We can now easily model \textit{composition}.
+    \item<2-> Let's see this on the
+    WHITEBOARD\footnote<2->{actual diagrams coming soon to the 
+    online version, I promise!}.
+    \item<3-> ...
+    \item<4-> ...
+    \item<5-> Isn't this just giving a function it's argument
+              and checking the result though?
+    \item<6-> Let's ask someone else...
+  \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -211,11 +250,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{What can we do with lambda calculi functions?}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Functions are boring!}
+\frametitle{Functions are limited.}
   \setbeamercolor{block title}{fg=black,bg=green!95!black}
   \setbeamercolor{block body}{fg=white,bg=green!25!black}
   \begin{block}{Can we apply any function to any argument?}
@@ -227,7 +262,7 @@
   \end{block}
   \setbeamercolor{block title}{fg=black,bg=green!95!black}
   \setbeamercolor{block body}{fg=white,bg=green!25!black}
-  \begin{block}{Are there other ways we can catgorise
+  \begin{block}{Are there other ways we can categorise
     functions besides the type of their input and output?}
   We can also classify functions based on properties of their
   behaviour. Sometimes we don't care what specific types
@@ -237,22 +272,17 @@
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Diagrams of types.}
+\frametitle{Typed vs Untyped composition}
+See WHITEBOARD.
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Diagrams of behavioural properties.}
+\frametitle{Types as a class of behaviour}
+See WHITEBOARD.
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{To functional programming}
-\setbeamercolor{block title}{fg=white,bg=orange!75!black}
-\setbeamercolor{block body}{fg=white,bg=orange!25!black}
-\begin{block}{Question for the pub!}
-Why are functions the default 'building-blocks' in most
-programming languages? Why not relations?
-\end{block}
-
 \setbeamercolor{block title}{fg=black,bg=green!95!black}
 \setbeamercolor{block body}{fg=white,bg=green!25!black}
 \begin{block}{Is everything really a function? (Really?)}
@@ -302,20 +332,65 @@ Let's briefly investigate this.
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{Algerbraic Data Types}
+\frametitle{Sum Types}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{The canonical sum type: Either}
+  \inputminted{idris}{../Code/src/Sum.idr}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Product Types}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{The canonical product type: Pair}
+  \inputminted{idris}{../Code/src/Product.idr}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Algebraic Data Types}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{A higher-kinded, parametrically polymorphic,
+  sum of product type: List}
+  \inputminted{idris}{../Code/src/List.idr}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Dependent Types and Type-classes}
+See actual Idris demo on verified functor and verified
+applicative.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Is compositionality important, John Hughes?}
+\begin{minipage}{0.8\linewidth}
+  \begin{figure}[h]
+  \includegraphics
+    [scale=0.3, width=0.5\linewidth]
+    {Images/John_Hughes.jpg}
+  \caption[John Hughes]{John
+  Hughes\protect\footnote[1]{Source
+  \protect\url{https://en.wikipedia.org/wiki/John_Hughes_(computer_scientist)\#/media/File:John_Hughes_(computer_scientist).jpg}}}
+  \end{figure}
+\end{minipage}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Why Functional Programming Matters
+    \cite{hughes1989functional}}
   \setbeamercolor{block title}{fg=black,bg=green!95!black}
-  \setbeamercolor{block body}{fg=white,bg=green!25!black}
-  \begin{block}{Sum Types}
-  The sum type is analogous to disjoint union in set theory.
-  $A + B$ can be construct from either $x \in A$ or $y \in B$
-  provided we tag the origin set.
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{Modularity through HOF and composition}
+    John wrote a seminal paper in 1989 on the benefits of 
+    functional programming. He argues that modularity and
+    compositionality lead to reusable, readable, debugable
+    code. 
   \end{block}
 
-  \setbeamercolor{block title}{fg=black,bg=green!95!black}
-  \setbeamercolor{block body}{fg=white,bg=green!25!black}
-  \begin{block}{Product Types}
-  
-  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -323,56 +398,31 @@ Let's briefly investigate this.
 
   \setbeamercolor{block title}{fg=black,bg=green!95!black}
   \setbeamercolor{block body}{fg=white,bg=green!25!black}
-  \begin{block}{}
+  \begin{block}{FP is about types}<1->
+    Types allow us to talk about well-behaved
+    compositionality and talk about functions
+    when defined by properties on sets. \\
+    In very expressive type systems we can even
+    prove those properties.
   \end{block}
+  \begin{block}{Functions are boring in general, but
+  interesting in specific}<2->
+    At the most general view, all a function can do produce
+    an output given an input. Functions become interesting
+    once you restrict this view to
+    functions-with-particular-properties.
+  \end{block}
+\setbeamercolor{block title}{fg=white,bg=orange!75!black}
+\setbeamercolor{block body}{fg=white,bg=orange!25!black}
+\begin{block}{Closing comment for the pub}<3->
+  I hypothesise that the more expressive a type system
+  becomes, the less compositional it becomes, but the
+  guarantees of behaviour become stronger. \\
+  Is this something we can objectively measure? \\
+  Is there a sweet spot for type systems for programming?
+\end{block}
+
 \end{frame}
-% question for the pub. Tension between 
-
-% Introduce Georg Cantor for sets
-%  - Arguably introduced in 1978
-%  - No Bijection between Natural Numbers and real numbers?
-%  - Both sets are infinite but there are more of one.
-
-% Introduce Alonzo Church for lambda calculus
-% Find out who introduced generics
-% Find out who introduced parametric and ad-hoc polymorphism
-% Introduce those two
-% 
-
-%Question for the pub: Why are 'functions' the basic building
-%block in programming languages instead of relations?
-%arguably relations are written just as often and are
-% strict superset of functions!
-
-%Question: Is everything really a function? Show 7 () :: Int
-%instead of 7 :: Int
-
-
-% Functions are boring!
-% All we can do with them is apply them to their arguments.
-% The second we start asking if we can apply functions to the
-% result of other functions we composition.
-% When we get composition, we start asking well does it make
-% sense to compose two functions.
-% Now we get types.
-% Types cause tension between composability and safety.
-% Even(N) does not compose with N but a domain taking an
-% N for an input when we care about even N forces us to
-% consider undefined behaviour.
-% Functional Programming is about 'reducing unintended side
-% affects"
-% Undefined behaviour is an unintended side effect!
-
-
-
-%in general I want to say that in programming
-
-% Cover: zSets, Relations, Functions, Partial and Total
-% Functions
-
-% Cover: Lambda Calculus
-
-% Cover: 
 
 \begin{frame}[fragile]
 \frametitle{References}
