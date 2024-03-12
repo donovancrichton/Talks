@@ -20,7 +20,7 @@
 \usepackage{amssymb}
 \usepackage{trfrac}
 
-\usetikzlibrary{arrows,automata,fit, shapes.geometric}
+\usetikzlibrary{arrows,automata,fit, shapes.geometric, positioning}
 
 \bibliographystyle{abbrvnat}
 
@@ -105,14 +105,6 @@
   \end{minipage}
 \end{frame}
 
-% Okay, what do I want to cover here?
-% I want to introduce the concept of a proposition
-% I want to introduce the concept of a theorem
-% I want to introduce the concept of a type
-% I want to introduce the curry-howard isomorphism
-% I want to talk about isomorphsim vs equality
-% 
-
 \begin{frame}[fragile]
   \frametitle{Proving Theorems $\cong$ Writing Programs - Overview}
   \setbeamercolor{block title}{fg=white,bg=green!55!black}
@@ -125,7 +117,6 @@
       conditions.
     \end{itemize}
   \end{block}
-  % Why is this important?
   \setbeamercolor{block title}{fg=white,bg=orange!55!black}
   \setbeamercolor{block body}{fg=white,bg=orange!25!black}
   \begin{block}{Uses for the PAT Interpretation}
@@ -140,7 +131,6 @@
 
 \begin{frame}[fragile]
   \frametitle{Proving Theorems $\cong$ Writing Programs - Applications}
-  % Who uses this in anger?
   \setbeamercolor{block title}{fg=white,bg=orange!55!black}
   \setbeamercolor{block body}{fg=white,bg=orange!25!black}
   \begin{block}{Applications}
@@ -160,7 +150,6 @@
 
 \begin{frame}[fragile]
   \frametitle{Propostions - Refresher}
-% What is a proposition
   \setbeamercolor{block title}{fg=white,bg=green!55!black}
   \setbeamercolor{block body}{fg=white,bg=green!25!black}
   \begin{block}{What is a proposition?}
@@ -181,7 +170,6 @@
 
 \begin{frame}[fragile]
   \frametitle{Theorems - Refresher}
-% What is a theorem
   \setbeamercolor{block title}{fg=white,bg=green!55!black}
   \setbeamercolor{block body}{fg=white,bg=green!25!black}
   \begin{block}{What is a theorem?}
@@ -203,7 +191,6 @@
 
 \begin{frame}[fragile]
   \frametitle{Proofs - Refresher}
-% What is a proof
   \setbeamercolor{block title}{fg=white,bg=green!55!black}
   \setbeamercolor{block body}{fg=white,bg=green!25!black}
   \begin{block}{What is a poof?}
@@ -225,11 +212,8 @@
   \end{block}
 \end{frame}
 
-
-
 \begin{frame}[fragile]
   \frametitle{Types - Refresher}
-% What is a type?
   \setbeamercolor{block title}{fg=white,bg=green!55!black}
   \setbeamercolor{block body}{fg=white,bg=green!25!black}
   \begin{block}{What is a type?}
@@ -258,7 +242,6 @@
 
 \begin{frame}[fragile]
   \frametitle{Elements/Inhabitants - Refresher}
-% What is an inhabitant of a type
   \setbeamercolor{block title}{fg=white,bg=green!55!black}
   \setbeamercolor{block body}{fg=white,bg=green!25!black}
   \begin{block}{What is an element or inhabitant of a type?}
@@ -279,34 +262,103 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{The CHL Correspondance - Computational Trinitarianism}
-  % draw a graph with arrows between Curry, Howard, and Lambeck
+  \frametitle{Curry, Howard, And Lambeck - Computational Trinitarianism}
+  \begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \node (Curry)
+      {\includegraphics[width=.15\textwidth]{Images/HaskellBCurry.jpg}};
+    \node at (Curry.north) {Haskell Curry};
+    \node[below right=2cm of Curry] (Howard)
+      {\includegraphics[width=.15\textwidth]{Images/WilliamAlvinHoward.jpg}};
+    \node at (Howard.south) {William Alvin Howard};
+    \node[below left=2cm of Curry] (Lambeck) 
+      {\includegraphics[width=.15\textwidth]{Images/JoachimLambeck.jpeg}};
+    \node at (Lambeck.south) {Joachim Lambeck};
+
+    \path[->] (Curry) edge (Howard);
+    \path[->] (Howard) edge [bend right] (Curry);
+    \path[->] (Curry) edge (Lambeck);
+    \path[->] (Lambeck) edge [bend left] (Curry);
+    \path[->] (Howard) edge [bend left] (Lambeck);
+    \path[->] (Lambeck) edge (Howard);
+    
+
+
+  \end{tikzpicture}
+  \end{figure}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Isomorphism vs Equality}
-  % define isomorphsim and equality
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Intuitionistic Logic $\cong$ STLC}
-  % Point out that it can hold for languages isomorphic to STLC 
+  \frametitle{Isomorphism}
+  \setbeamercolor{block title}{fg=white,bg=green!55!black}
+  \setbeamercolor{block body}{fg=white,bg=green!25!black}
+  \begin{block}{What is an isomorphism?}
+    Often denoted with $\cong$, an isomorphism is a \textit{structure
+    preserving map} between two algebraic structures. Generally this means
+    there is a pair of functions such that their composition is the identity.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{An Example of Isomorphism}
+    $\mathbb{B} = \{True, False\}.$ \\
+    $Bin = \{0, 1\}.$ \\
+    $\;$ \\
+    $f : \mathbb{B} \rightarrow Bin$ \\
+    $f(True) = 1$ \\
+    $f(False) = 0$ \\
+    $\;$ \\
+    $g : Bin \rightarrow \mathbb{B}$ \\
+    $g(0) = False$ \\
+    $g(1) = True$
+  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Types and Props - Implication}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Implication: English and Formalisms}
+  ``If $p$ then $q$'' Or ``$p$ implies $q$'', $p \rightarrow q$, $p \subset q$.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{An Example of Implication in Haskell}
+  \inputminted{Haskell}{../Code/src/Implication.hs}
+  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Types and Props - Conjuction}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Conjunction: English and Formalisms}
+  ``$p$ and $q$'', $p \land q$, $p \times $q.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{An Example of Implication in Haskell}
+  \inputminted{Haskell}{../Code/src/Conjunction.hs}
+  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Types and Props - Disjunction}
+  \setbeamercolor{block title}{fg=white,bg=orange!55!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{Disjunction: English and Formalisms}
+  ``$p$ or $q$'', $p \lor q$, $p + q$.
+  \end{block}
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{An Example of Implication in Haskell}
+  \inputminted{Haskell}{../Code/src/Disjunction.hs}
+  \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Types and Props - Negation}
+
 \end{frame}
 
 \begin{frame}[fragile]
