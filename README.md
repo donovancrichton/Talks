@@ -7,6 +7,9 @@ to least recent. I started collating my talks during the
 middle of my PhD in early 2023.
 
 ## Contents
+### 2024
+  * [Enforcing a discipline of Total Functional Programming
+    through Dependent Types](
 ### 2023
   * [Why is so much of FP about Types instead of
     Functions?](#Why-is-so-much-of-fp-about-types-instead-of-functions)
@@ -18,6 +21,12 @@ middle of my PhD in early 2023.
 ## Talk Links
 The link to each talk is usually the first word of the 
 description.
+
+### Enforcing a discipline of Total Functional Programming through Dependent Types
+  [This](/BFPG/TotalFPThroughDepTytpes/Talk) was a short talk
+  given to the [Brisbane Functional Programming
+  Group](https://www.meetup.com/brisbane-functional-programming-group) about how dependent types can be used to practice total functional programming without wrapping all our types in eithers/maybes.
+
 ### Why is so much of FP about Types instead of Functions?
   [This](/BFPG/WhyIsFPAboutTypes/Talk) was a short and 
   informal introductory talk given to the [Brisbane Functional Programming

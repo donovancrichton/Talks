@@ -318,20 +318,20 @@ inputs}, and guaranteed to terminate.
 \setbeamercolor{block title}{fg=white,bg=orange!75!black}
 \setbeamercolor{block body}{fg=white,bg=orange!25!black}
 \begin{block}{Compositionality}
-John Huges (1978) "Why Functional Programming Matters":
+John Hughes (1978) "Why Functional Programming Matters":
 Argues that compositionality is the backbone of modular
 programming. \\ \textbf{Partial functions do not compose}.
 \end{block}
-\begin{block}{Larger codomains}
+\begin{block}{Larger co-domains}
 We can regain totality by increasing the size of our
-codomains, i.e with a Maybe type, but now we can only compose
+co-domains, i.e with a Maybe type, but now we can only compose
 with functions that take Maybe types. This leads to a lot of
 unnecessary extending of domains.
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{An (unsatisfying) example of extending the codomain}
+\frametitle{An (unsatisfying) example of extending the co-domain}
 \mintinline{haskell}{f :: Token -> Maybe Term} \\
 \mintinline{haskell}{g :: Maybe Term -> Maybe Exp}
 \begin{tikzpicture}
