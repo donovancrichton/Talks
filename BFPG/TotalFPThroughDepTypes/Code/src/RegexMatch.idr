@@ -39,4 +39,15 @@ total
 example : Term
 example = parseSmallId (DPair.snd (match "foo"))
 
+∘ : {a : Type} 
+ -> {b : a -> Type}
+ -> {c : {x : a} -> b x -> Type}
+ -> ({x : a} -> (y : b x) -> c y)
+ -> (g : (x : a) -> b x)
+ -> ((x : a) -> c (g x))
+∘ f g = \x => f (g x)
+
+example2 : (x : String) 
+        -> ValidToken (DPair.fst (match x))
+example2 = (DPair.snd {p = ValidToken} `∘` match)
 

@@ -474,4 +474,47 @@ example = parseSmallId (DPair.snd (match "foo"))
 \end{block}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{What about compositionality?}
+\setbeamercolor{block title}{fg=white,bg=purple!75!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\begin{block}{Dependent Function Composition}
+\begin{minted}{Idris}
+cm : {a : Type} 
+ -> {b : a -> Type}
+ -> {c : {x : a} -> b x -> Type}
+ -> ({x : a} -> (y : b x) -> c y)
+ -> (g : (x : a) -> b x)
+ -> ((x : a) -> c (g x))
+cm f g = \x => f (g x)
+
+example2 : (x : String) 
+        -> ValidToken (DPair.fst (match x))
+example2 = (DPair.snd {p = ValidToken} `cm` match)
+\end{minted}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Conclusions}
+\setbeamercolor{block title}{fg=white,bg=green!75!black}
+\setbeamercolor{block body}{fg=white,bg=green!25!black}
+\begin{block}{Dependent Types can restrict our input domains.}
+We saw how, using dependant pairs and GADTs, we may restrict
+our input domains to be precisely the type we actually care
+about, avoiding the need to wrap types in superfluous Eithers
+and Maybes.
+\end{block}
+\setbeamercolor{block title}{fg=white,bg=orange!75!black}
+\setbeamercolor{block body}{fg=white,bg=orange!25!black}
+\begin{block}{Still not really compositional}
+When types dependent on one-another it can be difficult to
+compose them, even with dependent composition, due to the
+dependency on the initial input. This suggests that dependent
+types are less modular than 'plain' types (according to
+Hughes) however there are other practical advantages to
+dependent types.
+\end{block}
+\end{frame}
+
 \end{document}
