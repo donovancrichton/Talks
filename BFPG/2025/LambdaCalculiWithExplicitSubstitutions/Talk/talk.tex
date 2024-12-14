@@ -1,0 +1,137 @@
+\documentclass
+  [hyperref={colorlinks = true,linkcolor = blue, 
+             citecolor = blue, urlcolor = blue}
+  ]{beamer}
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+ 
+\usepackage[utf8]{inputenc}
+
+\usepackage[newfloat]{minted}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{upquote}
+\usepackage{natbib}
+\usepackage[export]{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{trfrac}
+
+\usetikzlibrary{arrows,automata,fit, shapes.geometric}
+
+\bibliographystyle{abbrvnat}
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Listing}
+
+\newcommand{\Def}[2]{
+  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
+  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \begin{block}{#1}
+  #2
+  \end{block}
+}
+
+\newcommand{\Ex}[2]{
+  \setbeamercolor{block title}{fg=white,bg=teal!75!black}
+  \setbeamercolor{block body}{fg=white,bg=teal!25!black}
+  \begin{block}{#1}
+  #2
+  \end{block}
+}
+
+\newcommand{\Code}[4]{
+  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block body}{fg=black,bg=white!80!gray}
+  \begin{block}{#2}
+    \inputminted[firstline=#4]{#1}{#3}
+  \end{block}
+}
+
+\newcommand{\Note}[2]{
+  \setbeamercolor{block title}{fg=white,bg=yellow!25!black}
+  \setbeamercolor{block body}{fg=black,bg=yellow!80!gray}
+  \begin{block}{#1}
+  #2
+  \end{block}
+}
+
+\newcommand{\CodePath}[1]{../Code/src/#1}
+\newcommand{\SlidePath}[1]{./Slides/#1}
+\newcommand{\ImagePath}[1]{./Images/#1}
+
+
+\setbeamertemplate{items}[square]
+
+\title{Lambda Calculi With Explicit Substitutions}
+\author{Donovan Crichton}
+  
+\date{Februrary 2025}
+
+\begin{document}
+ 
+\frame{\titlepage}
+
+\begin{frame}[fragile]
+  \frametitle{Preliminaries}
+  \begin{itemize}
+  \item Slides and Examples available at:
+    \href{https://github.com/donovancrichton/Talks}
+         {https://github.com/donovancrichton/Talks}
+  \item This talk: BFPG/LambdaCalculiWithExplicitSubstituions
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{About me}
+  \include{\SlidePath{aboutme.tex}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \Def{This is a test def$\Sigma$.}
+      {A test definition for some concept.}
+  \Ex{This is a test example.}
+     {An example for some concept.}
+  \Code{idris}{The Identity Function}
+       {\CodePath{Id.idr}}{4}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{The Problem}
+  \include{\SlidePath{problemstatement.tex}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Explicit Subsitutions (Paper)}
+  \include{\SlidePath{1991explicitsub.tex}}
+\end{frame}
+
+% Main body of talk goes here
+
+% What do I want to talk about?
+
+% 1. Give motivation for talk
+
+% Why do we have explicit substitutions in the first place?
+%   - it is more difficult to reason precisely about meta-level operations
+%   - disconnect between LC mathematical description and implementation
+%   
+
+
+\begin{frame}[fragile]
+\frametitle{References}
+\bibliography{references}{}
+\end{frame}
+
+
+
+
+\end{document}
+
