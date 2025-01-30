@@ -8,6 +8,7 @@ middle of my PhD in early 2023.
 
 ## Contents
 ### 2025
+  * [Lambda Calculi with Explicit Substitutions](#lambda-calculi-with-explicit-substitutions)
 
 ### 2024
   * [Enforcing a discipline of Total Functional Programming
@@ -23,6 +24,12 @@ middle of my PhD in early 2023.
 ## Talk Links
 The link to each talk is usually the first word of the 
 description.
+
+### Lambda Calculi with Explicit Substitutions
+  [This](/BFPG/2025/LambdaCalculiWithExplicitSubstitutions/Talk) was a short talk given to the 
+  [Brisbane Functional Programming Group](https://lu.ma/bfpg) about a commonly
+  encountered extension to lambda calculi, particularly in higher-order or dependently-typed variants - explicit
+  substitutions.
 
 ### Enforcing a discipline of Total Functional Programming through Dependent Types
   [This](/BFPG/2024/TotalFPThroughDepTytpes/Talk) was a short talk
