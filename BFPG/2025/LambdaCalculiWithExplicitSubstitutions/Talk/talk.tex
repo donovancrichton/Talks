@@ -3,11 +3,14 @@
              citecolor = blue, urlcolor = blue}
   ]{beamer}
 
+\setbeameroption{show notes on second screen=right}
+
 \usepackage{caption}
 \captionsetup[figure]{labelformat=empty}
 
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{footline}[frame number]
+
  
 \usepackage[utf8]{inputenc}
 
@@ -32,25 +35,19 @@
 \newcommand{\Def}[2]{
   \setbeamercolor{block title}{fg=white,bg=orange!75!black}
   \setbeamercolor{block body}{fg=white,bg=orange!25!black}
-  \begin{block}{#1}
-  #2
-  \end{block}
+  \begin{block}{#1}#2\end{block}
 }
 
 \newcommand{\Ex}[2]{
   \setbeamercolor{block title}{fg=white,bg=teal!75!black}
   \setbeamercolor{block body}{fg=white,bg=teal!25!black}
-  \begin{block}{#1}
-  #2
-  \end{block}
+  \begin{block}{#1}#2\end{block}
 }
 
 \newcommand{\Code}[4]{
   \setbeamercolor{block title}{fg=white,bg=purple!75!black}
   \setbeamercolor{block body}{fg=black,bg=white!80!gray}
-  \begin{block}{#2}
-    \inputminted[firstline=#4]{#1}{#3}
-  \end{block}
+  \begin{block}{#2}\inputminted[firstline=#4]{#1}{#3}\end{block}
 }
 
 \newcommand{\Note}[2]{
@@ -85,6 +82,7 @@
          {https://github.com/donovancrichton/Talks}
   \item This talk: BFPG/LambdaCalculiWithExplicitSubstituions
   \end{itemize}
+  \note{Welcome to the talk!}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -100,6 +98,15 @@
      {An example for some concept.}
   \Code{idris}{The Identity Function}
        {\CodePath{Id.idr}}{4}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Untyped Lambda Calculus Syntax}
+  \include{\SlidePath{lambdacalc-syntax.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Untyped Lambda Calculus Computation}
 \end{frame}
 
 \begin{frame}[fragile]

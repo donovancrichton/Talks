@@ -1,0 +1,37 @@
+\noindent
+\begin{minipage}[t]{0.48 \linewidth}
+  \onslide<2->{\Def{Our set of variables}
+{
+\centering
+  \onslide<3->{$V ::= x, y, z, \; ...$}
+}
+}
+
+ \onslide<4->{\Def{Untyped Lambda Calculus Grammar}
+{
+\vspace{-0.5cm}
+\begin{flalign*}
+ \onslide<5->{M,N &::= &V\; & \;\;
+  \text{\textit{Variable.}} &\\}
+ \onslide<6->{&\;\;\;\;\;| &M\;N\; & \;\;
+  \text{\textit{Application.}} &\\}
+ \onslide<7->{&\;\;\;\;\;| &\lambda V.M\; & \;\;
+  \text{\textit{Abstration.}} &}
+\end{flalign*}
+}
+}
+\vspace{-1cm}
+\end{minipage}
+$\;\;$
+\noindent
+\begin{minipage}[t]{0.47 \linewidth}
+  \onslide<8->{\Code{idris}{Code Tie-In}{\CodePath{Lambda.idr}}{3}}
+\end{minipage}
+
+\note[item]{A quick refresher on the untyped lambda calculus}
+\note[item]{Smallest turing-complete language.}
+\note[item]{First we need a set of variables.}
+\note[item]{Grammar/Syntax has 3 terms.}
+\note[item]{Looks scary? You can read this already, clearly inspires data declarations in ML languages}
+
+
