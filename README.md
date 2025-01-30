@@ -7,12 +7,14 @@ to least recent. I started collating my talks during the
 middle of my PhD in early 2023.
 
 ## Contents
+### 2025
+
 ### 2024
   * [Enforcing a discipline of Total Functional Programming
-    through Dependent Types](
+    through Dependent Types](#enforing-a-discipline-of-total-functional-programming-through-dependent-types)
 ### 2023
   * [Why is so much of FP about Types instead of
-    Functions?](#Why-is-so-much-of-fp-about-types-instead-of-functions)
+    Functions?](#why-is-so-much-of-fp-about-types-instead-of-functions)
   * [Towards Palatable Functional Programming With
      Dependent Type
      Theories](#towards-palatable-functional-programming-with-dependent-type-theories)
@@ -23,12 +25,12 @@ The link to each talk is usually the first word of the
 description.
 
 ### Enforcing a discipline of Total Functional Programming through Dependent Types
-  [This](/BFPG/TotalFPThroughDepTytpes/Talk) was a short talk
+  [This](/BFPG/2024/TotalFPThroughDepTytpes/Talk) was a short talk
   given to the [Brisbane Functional Programming
   Group](https://www.meetup.com/brisbane-functional-programming-group) about how dependent types can be used to practice total functional programming without wrapping all our types in eithers/maybes.
 
 ### Why is so much of FP about Types instead of Functions?
-  [This](/BFPG/WhyIsFPAboutTypes/Talk) was a short and 
+  [This](/BFPG/2023/WhyIsFPAboutTypes/Talk) was a short and 
   informal introductory talk given to the [Brisbane Functional Programming
   Group](https://www.meetup.com/brisbane-functional-programming-group) which introduces the notion of a function and 
   describes their limitations, and why types tend to take
@@ -38,7 +40,7 @@ description.
   Types, Type Classes, and Dependent Types.
 
 ### Towards Palatable Functional Programming With Dependent Type Theories
-  [This](/BFPG/PalatableFunctionalProgrammingWithDTT/Talk)
+  [This](/BFPG/2023/PalatableFunctionalProgrammingWithDTT/Talk)
   was a short and informal talk given to the 
   [Brisbane Functional Programming Group](https://www.meetup.com/brisbane-functional-programming-group) which served as
   a reintroduction of myself to the group after an
