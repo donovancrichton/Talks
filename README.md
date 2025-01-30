@@ -11,7 +11,7 @@ middle of my PhD in early 2023.
 
 ### 2024
   * [Enforcing a discipline of Total Functional Programming
-    through Dependent Types](#enforing-a-discipline-of-total-functional-programming-through-dependent-types)
+    through Dependent Types](#enforcing-a-discipline-of-total-functional-programming-through-dependent-types)
 ### 2023
   * [Why is so much of FP about Types instead of
     Functions?](#why-is-so-much-of-fp-about-types-instead-of-functions)
