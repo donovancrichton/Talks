@@ -3,6 +3,22 @@
              citecolor = blue, urlcolor = blue}
   ]{beamer}
 
+
+%\setbeamercolor{structure}{fg=black,bg=white}
+
+%\setbeamercolor*{palette primary}{fg=black,bg=white}
+%\setbeamercolor*{palette secondary}{fg=black,bg=white}
+%\setbeamercolor*{palette tertiary}{fg=black,bg=white}
+%\setbeamercolor*{palette quaternary}{fg=black,bg=white}
+
+%\setbeamercolor{section in toc}{fg=black,bg=white}
+%\setbeamercolor{alerted text}{fg=black, bg=white}
+
+%\setbeamercolor{titlelike}{parent=palette primary}
+%\setbeamercolor{frametitle}{bg=black,fg=white}
+
+%\setbeamercolor*{titlelike}{parent=palette primary}
+
 \setbeameroption{show notes on second screen=right}
 
 \usepackage{caption}
@@ -33,19 +49,19 @@
 \SetupFloatingEnvironment{listing}{name=Listing}
 
 \newcommand{\Def}[2]{
-  \setbeamercolor{block title}{fg=white,bg=orange!75!black}
-  \setbeamercolor{block body}{fg=white,bg=orange!25!black}
+  \setbeamercolor{block title}{fg=white,bg=white!25!black}
+  \setbeamercolor{block body}{fg=black,bg=white!75!black}
   \begin{block}{#1}#2\end{block}
 }
 
 \newcommand{\Ex}[2]{
-  \setbeamercolor{block title}{fg=white,bg=teal!75!black}
-  \setbeamercolor{block body}{fg=white,bg=teal!25!black}
+  \setbeamercolor{block title}{fg=black,bg=white!75!black}
+  \setbeamercolor{block body}{fg=white,bg=white!25!black}
   \begin{block}{#1}#2\end{block}
 }
 
 \newcommand{\Code}[4]{
-  \setbeamercolor{block title}{fg=white,bg=purple!75!black}
+  \setbeamercolor{block title}{fg=white,bg=gray!75!black}
   \setbeamercolor{block body}{fg=black,bg=white!80!gray}
   \begin{block}{#2}\inputminted[firstline=#4]{#1}{#3}\end{block}
 }
@@ -65,8 +81,11 @@
 
 \setbeamertemplate{items}[square]
 
-\title{Lambda Calculi With Explicit Substitutions}
-\author{Donovan Crichton}
+\title{Lambda Calculi With Explicit Substitutions \\
+       \small slides: 
+       \href{https://github.com/donovancrichton/Talks}
+            {https://github.com/donovancrichton/Talks}}
+\author{Donovan Crichton} 
   
 \date{Februrary 2025}
 
@@ -75,49 +94,79 @@
 \frame{\titlepage}
 
 \begin{frame}[fragile]
-  \frametitle{Preliminaries}
-  \begin{itemize}
-  \item Slides and Examples available at:
-    \href{https://github.com/donovancrichton/Talks}
-         {https://github.com/donovancrichton/Talks}
-  \item This talk: BFPG/LambdaCalculiWithExplicitSubstituions
-  \end{itemize}
-  \note{Welcome to the talk!}
+  \frametitle{The goal of this talk}
+    \include{\SlidePath{goaloftalk.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-\frametitle{About me}
-  \include{\SlidePath{aboutme.tex}}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \Def{This is a test def$\Sigma$.}
-      {A test definition for some concept.}
-  \Ex{This is a test example.}
-     {An example for some concept.}
-  \Code{idris}{The Identity Function}
-       {\CodePath{Id.idr}}{4}
+  \frametitle{Reading Syntax: Grammar}
+    \include{\SlidePath{syntax-grammar.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Untyped Lambda Calculus Syntax}
-  \include{\SlidePath{lambdacalc-syntax.tex}}
+  \frametitle{Examples of Grammar}
+    \include{\SlidePath{grammar-examples.tex}}    
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Untyped Lambda Calculus Computation}
+  \frametitle{Reading Syntax: Typing Rules}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{The Problem}
-  \include{\SlidePath{problemstatement.tex}}
+  \frametitle{Examples of Typing Rules}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{STLC: The Simply Typed Lambda Caluclus}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{STLC 2}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Substitution and Computation}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Alpha Equivalence, Free Variables, Beta Reduction}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{De-Bruijn Indices}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Lift-and-shift}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{A lot of work at the meta-level}
+\end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Explicit Subsitutions (Paper)}
   \include{\SlidePath{1991explicitsub.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Extending the STLC with Explicit Substitutions}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Syntax cont.}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{ES rules.}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Evaluating ES}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Evaluating ES 2}
 \end{frame}
 
 % Main body of talk goes here
