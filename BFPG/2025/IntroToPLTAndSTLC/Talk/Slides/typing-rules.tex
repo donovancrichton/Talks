@@ -1,0 +1,30 @@
+\only<1>{
+\Def{Typing Rules}
+    {\[ \trfrac[(\textit{Ty-Arrow})]
+             {\Gamma \vdash A \; \Type \qquad 
+              \Gamma, x \ofType A \vdash B \; \Type}
+            {\Gamma \vdash A \rightarrow B \; \Type}
+     \]
+     \[
+        \trfrac[(\textit{Func})]
+             {\begin{trgather}
+                \Gamma \vdash A \rightarrow B \Type \qquad
+                \Gamma, x \ofType A \vdash M \ofType B
+              \end{trgather}}
+             {\Gamma \vdash \lambda(x \ofType A).M \ofType
+                A \rightarrow B} 
+     \]
+     
+     \[
+       \trfrac[(\textit{App})]
+         {\begin{trgather}
+          \Gamma \vdash A \rightarrow B \Type \qquad
+          \Gamma \vdash f \ofType A \rightarrow B \qquad
+          \Gamma \vdash x \ofType A
+          \end{trgather}}
+         {\Gamma \vdash f \; x \ofType B}
+     \]
+      
+    }
+}
+

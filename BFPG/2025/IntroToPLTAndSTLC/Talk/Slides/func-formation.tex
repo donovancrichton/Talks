@@ -1,0 +1,70 @@
+\only<1>{
+  \textcolor{black}{If the premises hold above, so the conclusion
+                    holds below.}
+  \Def{The Function Term Former}
+      {
+     \[
+        \boxed{
+        \trfrac[(\textit{Func})]
+             {\qquad \qquad \qquad \qquad}
+             {\qquad \qquad \qquad \qquad} 
+        }
+     \]
+     }
+}
+
+\only<2>{
+  \textcolor{black}{From our program scope $\Gamma$ we can
+             obtain \\ an arbitrary function type $A \rightarrow B$.}
+  \Def{The Function Term Former}
+      {
+     \[
+        \trfrac[(\textit{Func})]
+             {
+                \boxed{\Gamma \vdash A \rightarrow B \Type} 
+                      \qquad \qquad}
+             {\qquad \qquad \qquad } 
+     \]
+     }
+}
+
+\only<3>{
+  \Def{The Function Term Former}
+      {
+     \[
+        \trfrac[(\textit{Func})]
+             {\Gamma \vdash A \rightarrow B \Type \boxed{\qquad}
+              %\Gamma, x \ofType A \vdash M \ofType B
+             }
+             {\qquad \qquad \qquad} 
+     \]
+     }
+}
+
+\only<4>{
+  \Def{The Function Term Former}
+      {
+     \[
+        \trfrac[(\textit{Func})]
+             {\Gamma \vdash A \rightarrow B \Type \qquad
+              \boxed{\Gamma, x \ofType A \vdash M \ofType B}
+             }
+             {\qquad \qquad \qquad} 
+     \]
+     }
+}
+
+\only<5>{
+  \Def{The Function Term Former}
+      {
+     \[
+        \trfrac[(\textit{Func})]
+             {\Gamma \vdash A \rightarrow B \Type \qquad
+              \Gamma, x \ofType A \vdash M \ofType B
+             }
+             {\boxed{\Gamma \vdash \lambda(x \ofType A).M \ofType
+                A \rightarrow B}}
+     \]
+     }
+}
+

@@ -1,12 +1,14 @@
 module Lambda
 
--- Our 'set' of variables.
 V : Type
 V = String
 
--- Our Lambda (Λ) 
--- Calculus Syntax.
 data Λ = Var V 
        | App Λ Λ
        | Abs V Λ
 
+id : Λ
+id = Abs "x" (Var "x")
+
+const : Λ
+const = Abs "a" (Abs "b" (Var "a"))

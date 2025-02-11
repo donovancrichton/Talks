@@ -48,6 +48,9 @@
 \newenvironment{code}{\captionsetup{type=listing}}{}
 \SetupFloatingEnvironment{listing}{name=Listing}
 
+\newcommand{\Type}{\; \text{Type}}
+\newcommand{\ofType}{\; \colon}
+
 \newcommand{\Def}[2]{
   \setbeamercolor{block title}{fg=white,bg=white!25!black}
   \setbeamercolor{block body}{fg=black,bg=white!75!black}
@@ -63,7 +66,9 @@
 \newcommand{\Code}[4]{
   \setbeamercolor{block title}{fg=white,bg=gray!75!black}
   \setbeamercolor{block body}{fg=black,bg=white!80!gray}
-  \begin{block}{#2}\inputminted[firstline=#4]{#1}{#3}\end{block}
+  \begin{block}{#2}
+               \inputminted[firstline=#4,linenos,firstnumber=1]
+               {#1}{#3}\end{block}
 }
 
 \newcommand{\Note}[2]{
@@ -81,13 +86,16 @@
 
 \setbeamertemplate{items}[square]
 
-\title{Lambda Calculi With Explicit Substitutions \\
+\setbeamercolor{structure}{fg=black, bg=white}
+\setbeamercolor{frametitle}{fg=structure.bg, bg=structure.fg}
+
+\title{Introduction to Programming Language Theory and the Simply Typed Lambda Calculus \\
        \small slides: 
        \href{https://github.com/donovancrichton/Talks}
             {https://github.com/donovancrichton/Talks}}
 \author{Donovan Crichton} 
   
-\date{Februrary 2025}
+\date{April 2025}
 
 \begin{document}
  
@@ -104,24 +112,65 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Examples of Grammar}
-    \include{\SlidePath{grammar-examples.tex}}    
+  \frametitle{Why does Grammar look like this?}
+    \include{\SlidePath{why-does-grammar-look-like-this.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{What about in programming?}
+    \include{\SlidePath{grammar-in-haskell.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Church Encoding - Naturals and Booleans}
+    \include{\SlidePath{church-encoding.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Church Encoding - Functions and Predicates}
+    \include{\SlidePath{church-functions-and-predicates.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Reading Syntax: Typing Rules}
+    \include{\SlidePath{typing-rules.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Examples of Typing Rules}
+  \frametitle{The Program Context}
+    \include{\SlidePath{context.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{STLC: The Simply Typed Lambda Caluclus}
+  \frametitle{Example Contexts}
+    \include{\SlidePath{example-contexts.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{The Function Type Formation Rule}
+    \include{\SlidePath{arrow-formation.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{The Function Term Formation Rule}
+    \include{\SlidePath{func-formation.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{The Function Term Elimination Rule}
+    \include{\SlidePath{app-elimination.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{STLC: The Simply Typed Lambda Calculus}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{STLC 2}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{$\alpha$-Equivalence/Conversion.}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -145,7 +194,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Explicit Subsitutions (Paper)}
+  \frametitle{Explicit Substitutions (Paper)}
   \include{\SlidePath{1991explicitsub.tex}}
 \end{frame}
 

@@ -8,7 +8,8 @@ middle of my PhD in early 2023.
 
 ## Contents
 ### 2025
-  * [Lambda Calculi with Explicit Substitutions](#lambda-calculi-with-explicit-substitutions)
+  * [Introduction to Programming Language Theory and the Simply Typed Lambda
+    Calculus](#introduction-to-programming-language-theory-and-the-simply-typed-lambda-calculus)
 
 ### 2024
   * [Enforcing a discipline of Total Functional Programming
@@ -26,10 +27,8 @@ The link to each talk is usually the first word of the
 description.
 
 ### Lambda Calculi with Explicit Substitutions
-  [This](/BFPG/2025/LambdaCalculiWithExplicitSubstitutions/Talk) was a short talk given to the 
-  [Brisbane Functional Programming Group](https://lu.ma/bfpg) about a commonly
-  encountered extension to lambda calculi, particularly in higher-order or dependently-typed variants - explicit
-  substitutions.
+  [This](/BFPG/2025/IntroToPLTAndSTLC/Talk) was a short talk given to the 
+  [Brisbane Functional Programming Group](https://lu.ma/bfpg) which introduces basic syntax from programming language theory and applies this to the simply typed lambda calculus. We cover how to read grammars and typing rules, α-equivalence, free and bound variables, substituion, and de-bruin indices. We then show how to extend STLC with more types and terms, and finally: explicit substituions.
 
 ### Enforcing a discipline of Total Functional Programming through Dependent Types
   [This](/BFPG/2024/TotalFPThroughDepTytpes/Talk) was a short talk

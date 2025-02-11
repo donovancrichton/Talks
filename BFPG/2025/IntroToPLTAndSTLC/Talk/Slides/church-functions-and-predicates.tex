@@ -1,0 +1,35 @@
+\only<1>{
+  \Def{Functions and Predicates}
+      {
+        \vspace{-0.5cm}
+        \begin{align*}
+          \text{Succ}(n,f,x) &= \lambda n . \lambda f . \lambda x .
+                                \lambda f \; (n \; f \; x) \\
+          \text{Add}(m, n, f, x) &= \lambda m . \lambda n . 
+                                    \lambda f . \lambda x .
+                                    m \; f \; (n \; f \; x) \\
+          \text{IsZero}(n) &= \lambda n . n \; 
+                           (\lambda x . \text{False}) \; 
+                           \text{True}
+        \end{align*}
+        \vspace{-0.5cm}
+      }
+}
+
+\only<2>{
+  \Def{Functions and Predicates}
+      {
+        \vspace{-0.5cm}
+        \begin{align*}
+          \text{Succ}(n,f,x) &= \lambda n . \lambda f . \lambda x .
+                                \lambda f \; (n \; f \; x) \\
+          \text{Add}(m, n, f, x) &= \lambda m . \lambda n . 
+                                    \lambda f . \lambda x .
+                                    m \; f \; (n \; f \; x) \\
+          \text{IsZero}(n) &= \lambda n . n \; 
+                           (\lambda x . \lambda a . \lambda b . b)
+                            \; \lambda a . \lambda b . a
+        \end{align*}
+        \vspace{-0.5cm}
+      }
+}
