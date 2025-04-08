@@ -19,7 +19,7 @@
 
 %\setbeamercolor*{titlelike}{parent=palette primary}
 
-\setbeameroption{show notes on second screen=right}
+%\setbeameroption{show notes on second screen=right}
 
 \usepackage{caption}
 \captionsetup[figure]{labelformat=empty}
@@ -89,7 +89,7 @@
 \setbeamercolor{structure}{fg=black, bg=white}
 \setbeamercolor{frametitle}{fg=structure.bg, bg=structure.fg}
 
-\title{Introduction to Programming Language Theory and the Simply Typed Lambda Calculus \\
+\title{Explicit Substitutions Part 1: STLC and Background \\
        \small slides: 
        \href{https://github.com/donovancrichton/Talks}
             {https://github.com/donovancrichton/Talks}}
@@ -162,39 +162,64 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{STLC: The Simply Typed Lambda Calculus}
+  \frametitle{STLC: Grammar}
+    \include{\SlidePath{stlc-grammar.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{STLC 2}
+  \frametitle{STLC: Typing Rules/Judgements}
+    \include{\SlidePath{stlc-typing-rules.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{$\alpha$-Equivalence/Conversion.}
+  \frametitle{Free Variables}
+    \include{\SlidePath{free-variables.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Substitution and Computation}
+  \frametitle{$\alpha$-equivalence/conversion}
+    \include{\SlidePath{alpha-equivalence.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Alpha Equivalence, Free Variables, Beta Reduction}
+  \frametitle{Substitution}
+    \include{\SlidePath{substitution.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Capture Avoiding Substituion}
+    \include{\SlidePath{capture-avoiding-subs.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Computation}
+    \include{\SlidePath{computation.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{De Bruijn Indices: (1972) Lambda Calculus Notation
+     with Nameless Dummies ...}
+    \include{\SlidePath{de-bruijn.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{De-Bruijn Indices}
+    \include{\SlidePath{de-bruijn-indices.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Lift-and-shift}
+    \include{\SlidePath{lift-and-shift.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{A lot of work at the meta-level}
 \end{frame}
 
+%by 2:30pm
+
 \begin{frame}[fragile]
-  \frametitle{Explicit Substitutions (Paper)}
+  \frametitle{Explicit Substitutions: (1991) Explicit Substitutions}
   \include{\SlidePath{1991explicitsub.tex}}
 \end{frame}
 
@@ -217,6 +242,12 @@
 \begin{frame}[fragile]
   \frametitle{Evaluating ES 2}
 \end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Where to learn more}
+\end{frame}
+
+%finish by 4:30pm
 
 % Main body of talk goes here
 

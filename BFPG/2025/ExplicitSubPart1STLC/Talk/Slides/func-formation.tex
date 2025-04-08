@@ -5,7 +5,7 @@
       {
      \[
         \boxed{
-        \trfrac[(\textit{Func})]
+        \trfrac[(\textit{Abs})]
              {\qquad \qquad \qquad \qquad}
              {\qquad \qquad \qquad \qquad} 
         }
@@ -19,7 +19,7 @@
   \Def{The Function Term Former}
       {
      \[
-        \trfrac[(\textit{Func})]
+        \trfrac[(\textit{Abs})]
              {
                 \boxed{\Gamma \vdash A \rightarrow B \Type} 
                       \qquad \qquad}
@@ -29,10 +29,11 @@
 }
 
 \only<3>{
+  \textcolor{black}{..And..}
   \Def{The Function Term Former}
       {
      \[
-        \trfrac[(\textit{Func})]
+        \trfrac[(\textit{Abs})]
              {\Gamma \vdash A \rightarrow B \Type \boxed{\qquad}
               %\Gamma, x \ofType A \vdash M \ofType B
              }
@@ -42,10 +43,12 @@
 }
 
 \only<4>{
+  \textcolor{black}{From our program scope $\Gamma, x : A$ we 
+                    can derive a term $M : B$.}
   \Def{The Function Term Former}
       {
      \[
-        \trfrac[(\textit{Func})]
+        \trfrac[(\textit{Abs})]
              {\Gamma \vdash A \rightarrow B \Type \qquad
               \boxed{\Gamma, x \ofType A \vdash M \ofType B}
              }
@@ -55,10 +58,14 @@
 }
 
 \only<5>{
+  \textcolor{black}{Then we may derive a lambda abstraction term, 
+                    where $x$ has type $A$ and the body is $M$,
+                    where the entire abstraction has type
+                    $A \rightarrow B$.}
   \Def{The Function Term Former}
       {
      \[
-        \trfrac[(\textit{Func})]
+        \trfrac[(\textit{Abs})]
              {\Gamma \vdash A \rightarrow B \Type \qquad
               \Gamma, x \ofType A \vdash M \ofType B
              }

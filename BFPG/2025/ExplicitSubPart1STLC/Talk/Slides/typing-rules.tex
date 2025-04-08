@@ -1,4 +1,5 @@
 \only<1>{
+Is this scary?
 \Def{Typing Rules}
     {\[ \trfrac[(\textit{Ty-Arrow})]
              {\Gamma \vdash A \; \Type \qquad 
@@ -19,10 +20,10 @@
        \trfrac[(\textit{App})]
          {\begin{trgather}
           \Gamma \vdash A \rightarrow B \Type \qquad
-          \Gamma \vdash f \ofType A \rightarrow B \qquad
-          \Gamma \vdash x \ofType A
+          \Gamma \vdash M \ofType A \rightarrow B \qquad
+          \Gamma \vdash N \ofType A
           \end{trgather}}
-         {\Gamma \vdash f \; x \ofType B}
+         {\Gamma \vdash M \; N \ofType B}
      \]
       
     }
