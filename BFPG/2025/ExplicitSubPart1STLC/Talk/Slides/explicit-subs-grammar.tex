@@ -1,0 +1,67 @@
+
+\only<1>{
+\Def{STLC with Explicit Substitutions: Grammar}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \alpha, \beta 
+            &::= \; \ast \; | \; \alpha \rightarrow \beta
+            &\text{Types} 
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+}
+
+\only<2>{
+\Def{STLC with Explicit Substitutions: Grammar}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \alpha, \beta 
+            &::= \; \ast \; | \; \alpha \rightarrow \beta
+            &\text{Types} \\
+       M, N &::= 1 \; \, | \; M \; N \; | \; \lambda \alpha.M \; | \; M[\gamma]
+            &\text{Terms} \\
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+}
+
+\only<3>{
+\Def{STLC with Explicit Substitutions: Grammar}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \alpha, \beta 
+            &::= \; \ast \; | \; \alpha \rightarrow \beta
+            &\text{Types} \\
+       M, N &::= 1 \; \, | \; M \; N \; | \; \lambda \alpha.M \; | \; M[\gamma]
+            &\text{Terms} \\
+       \gamma, \delta &::= id \; | \; \uparrow \; | \; \gamma, M : \alpha \; | \; \gamma \circ \delta
+            &\text{Substitutions}
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+}
+
+\only<4>{
+\Def{STLC with Explicit Substitutions: Grammar}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \alpha, \beta 
+            &::= \; \ast \; | \; \alpha \rightarrow \beta
+            &\text{Types} \\
+       M, N &::= 1 \; \, | \; M \; N \; | \; \lambda \alpha.M \; | \; M[\gamma]
+            &\text{Terms} \\
+       \gamma, \delta &::= id \; | \; \uparrow \; | \; \gamma, M : \alpha \; | \; \gamma \circ \delta
+            &\text{Substitutions} \\
+       \Gamma &::= \; \diamond \; | \; \Gamma,\alpha
+            &\text{Contexts}
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+}
+
+
+
