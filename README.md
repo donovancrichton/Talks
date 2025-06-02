@@ -25,7 +25,16 @@ middle of my PhD in early 2023.
 The link to each talk is usually the first word of the 
 description.
 
-### Lambda Calculi with Explicit Substitutions
+### Explicit Substituions Part 2
+   During Part 1 we covered the syntax for expresison grammars, 
+   typing Rules, and the simply typed lambda calculus, 
+   finishing with the syntax for explicit Subsitutions. 
+   This talk will flesh our extended lambda calculus by providing
+   intution into the new substituion combinators, evaluation
+   semantics, and finally extending to a dependently typed
+   calculus in the vein of modern type theoretic presentations.
+
+### Explicit Substituions Part 1: STLC and Background
   [This](/BFPG/2025/IntroToPLTAndSTLC/Talk) was a short talk given to the 
   [Brisbane Functional Programming Group](https://lu.ma/bfpg) which introduces basic syntax from programming language theory and applies this to the simply typed lambda calculus. We cover how to read grammars and typing rules, α-equivalence, free and bound variables, substituion, and de-bruin indices. We then show how to extend STLC with more types and terms, and finally: explicit substituions.
 
