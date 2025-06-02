@@ -1,0 +1,58 @@
+\only<1>{
+\Def{STLC: Typing Rules}
+    {\[ \trfrac[(\textit{$\rightarrow$-Form})]
+             {\Gamma \vdash \alpha \Type \qquad 
+              \Gamma, x \ofType \alpha \vdash \beta \Type}
+            {\Gamma \vdash \alpha \rightarrow \beta \Type}
+     \]
+    }
+}
+
+\only<2>{
+\Def{STLC: Typing Rules}
+    {\[ \trfrac[(\textit{$\rightarrow$-Form})]
+             {\Gamma \vdash \alpha \Type \qquad 
+              \Gamma, x \ofType \alpha \vdash \beta \Type}
+            {\Gamma \vdash \alpha \rightarrow \beta \Type}
+     \]
+     \[
+        \trfrac[(\textit{$\rightarrow$-Intro})]
+             {\begin{trgather}
+                \Gamma \vdash alpha \rightarrow \beta \Type \qquad
+                \Gamma, x \ofType \alpha \vdash M \ofType \beta
+              \end{trgather}}
+             {\Gamma \vdash \lambda(x \ofType \alpha).M \ofType
+                \alpha \rightarrow \beta} 
+     \]
+    }
+}
+
+\only<3>{
+\Def{STLC: Typing Rules}
+    {\[ \trfrac[(\textit{$\rightarrow$-Form})]
+             {\Gamma \vdash \alpha \Type \qquad 
+              \Gamma, x \ofType \alpha \vdash \beta \Type}
+            {\Gamma \vdash \alpha \rightarrow \beta \Type}
+     \]
+     \[
+        \trfrac[(\textit{$\rightarrow$-Intro})]
+             {\begin{trgather}
+                \Gamma \vdash \alpha \rightarrow \beta \Type \qquad
+                \Gamma, x \ofType \alpha \vdash M \ofType \beta
+              \end{trgather}}
+             {\Gamma \vdash \lambda(x \ofType \alpha).M \ofType
+                \alpha \rightarrow \beta} 
+     \]
+     \[
+       \trfrac[(\textit{$\rightarrow$-Elim})]
+         {\begin{trgather}
+          \Gamma \vdash \alpha \rightarrow \beta \Type \qquad
+          \Gamma \vdash M \ofType \alpha \rightarrow \beta \qquad
+          \Gamma \vdash N \ofType \alpha
+          \end{trgather}}
+         {\Gamma \vdash M \; N \ofType \beta}
+     \]
+      
+    }
+}
+

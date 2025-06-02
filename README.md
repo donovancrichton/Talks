@@ -8,8 +8,7 @@ middle of my PhD in early 2023.
 
 ## Contents
 ### 2025
-  * [Introduction to Programming Language Theory and the Simply Typed Lambda
-    Calculus](#introduction-to-programming-language-theory-and-the-simply-typed-lambda-calculus)
+  * [Explicit Substitutions Part 1: STLC and Background](#explicit-substitutions-part-1:-stlc-and-background)
 
 ### 2024
   * [Enforcing a discipline of Total Functional Programming
