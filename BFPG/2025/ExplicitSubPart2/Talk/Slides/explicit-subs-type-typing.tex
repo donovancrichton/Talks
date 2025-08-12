@@ -1,0 +1,23 @@
+\only<1>{
+\Def{Explicit Subs: Type Typing}
+    {\[ \trfrac[(\textit{Type-Base})]
+             {\vdash \Gamma \; \text{ctx}}
+            {\Gamma \vdash \ast \Type}
+     \]
+    }
+}
+
+\only<2>{
+\Def{Explicit Subs: Type Typing}
+    {\[ \trfrac[(\textit{Type-Base})]
+             {\vdash \Gamma \; \text{ctx}}
+            {\Gamma \vdash \ast \Type}
+     \]
+     \[
+        \trfrac[(\textit{Type-Arrow})]
+             {\Gamma \vdash \alpha \Type \qquad 
+              \Gamma \vdash \beta \Type}
+             {\Gamma \vdash \alpha \rightarrow \beta \Type} 
+     \]
+    }
+}

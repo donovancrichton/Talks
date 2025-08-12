@@ -1,0 +1,73 @@
+\only<1>{
+\Def{Explicit Subs: Substitution Typing}
+    {\[ \trfrac[(\textit{Sub-Id})]
+             {\vdash \Gamma \; \text{ctx}}
+            {\Gamma \vdash id \ofType \Gamma}
+     \]
+    }
+}
+
+\only<2>{
+\Def{Explicit Subs: Substitution Typing}
+    {\[ \trfrac[(\textit{Sub-Id})]
+             {\vdash \Gamma \; \text{ctx}}
+            {\Gamma \vdash id \ofType \Gamma}
+     \]
+     \[
+        \trfrac[(\textit{Sub-Weak})]
+             {\vdash \Gamma, \alpha \; \text{ctx}}
+             {\Gamma, \alpha \vdash \uparrow \ofType \Gamma} 
+     \]
+    }
+}
+
+\only<3>{
+\Def{Explicit Subs: Substitution Typing}
+    {\[ \trfrac[(\textit{Sub-Id})]
+             {\vdash \Gamma \; \text{ctx}}
+            {\Gamma \vdash id \ofType \Gamma}
+     \]
+     \[
+        \trfrac[(\textit{Sub-Weak})]
+             {\vdash \Gamma, \alpha \; \text{ctx}}
+             {\Gamma, \alpha \vdash \uparrow \ofType \Gamma} 
+     \]
+     \[ \trfrac[(\textit{Sub-Ext})]
+             {\begin{trgather}
+              \Gamma \vdash \gamma \ofType \Delta \qquad
+              \Gamma \vdash M \ofType \alpha
+              \end{trgather}}
+            {\Gamma \vdash \gamma, M : \alpha \ofType \Delta, \alpha}
+     \]
+    }
+}
+
+\only<4>{
+\Def{Explicit Subs: Substitution Typing}
+    {\[ \trfrac[(\textit{Sub-Id})]
+             {\vdash \Gamma \; \text{ctx}}
+            {\Gamma \vdash id \ofType \Gamma}
+     \]
+     \[
+        \trfrac[(\textit{Sub-Weak})]
+             {\vdash \Gamma, \alpha \; \text{ctx}}
+             {\Gamma, \alpha \vdash \uparrow \ofType \Gamma} 
+     \]
+     \[ \trfrac[(\textit{Sub-Ext})]
+             {\begin{trgather}
+              \Gamma \vdash \gamma \ofType \Delta \qquad
+              \Gamma \vdash M \ofType \alpha
+              \end{trgather}}
+            {\Gamma \vdash \gamma, M : \alpha \ofType \Delta, \alpha}
+     \]
+     \[
+        \trfrac[(\textit{Sub-Comp})]
+             {\begin{trgather}
+              \Gamma \vdash \gamma \ofType \Delta \qquad
+              \Delta \vdash \delta \ofType \Theta
+              \end{trgather}}
+             {\Gamma \vdash \gamma \circ \delta \ofType \Theta} 
+     \]
+    }
+}
+

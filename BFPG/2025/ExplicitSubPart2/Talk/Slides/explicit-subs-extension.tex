@@ -1,0 +1,35 @@
+
+\only<1>{
+\Ex{$\diamond, \alpha, \beta \vdash \; (\gamma, M : \theta) \; : 
+     \diamond, \alpha, \beta, \theta$}
+   {We extend substituion $\gamma$ by a term $M : \theta$ and drop
+    $\theta$ from our source context. This models the act of
+    substituting in a term for a variable in context.} 
+}
+
+\only<2>{
+\Ex{$\diamond, \alpha, \beta \vdash \; (\gamma, M : \theta) \; : 
+     \diamond, \alpha, \beta, \theta$}
+   {We extend substituion $\gamma$ by a term $M : \theta$ and drop
+    $\theta$ from our source context. This models the act of
+    substituting in a term for a variable in context.} 
+\centering
+\begin{tikzpicture}
+  
+  \node (SRC) at (0, 0) {$\diamond, 
+                          \overset{3}{\alpha}, 
+                          \overset{2}{\beta},
+                          \overset{1}{\theta}
+                          $};
+
+  \node (TGT) at (0, -4) {$\diamond, 
+                           \overset{2}{\alpha}, 
+                           \overset{1}{\beta}$};
+
+  \path[draw, ->] (SRC) edge["$\gamma \text{\textit{,M : }}\theta$"] (TGT);
+\end{tikzpicture}
+
+}
+
+
+

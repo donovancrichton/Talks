@@ -8,6 +8,7 @@ middle of my PhD in early 2023.
 
 ## Contents
 ### 2025
+  * [Explicit Substitutions Part 2: Explicit Substitutions](#explicit-substitutions-part-2:explicit-substitutions)
   * [Explicit Substitutions Part 1: STLC and Background](#explicit-substitutions-part-1:-stlc-and-background)
 
 ### 2024
@@ -25,14 +26,8 @@ middle of my PhD in early 2023.
 The link to each talk is usually the first word of the 
 description.
 
-### Explicit Substituions Part 2
-   During Part 1 we covered the syntax for expresison grammars, 
-   typing Rules, and the simply typed lambda calculus, 
-   finishing with the syntax for explicit Subsitutions. 
-   This talk will flesh our extended lambda calculus by providing
-   intution into the new substituion combinators, evaluation
-   semantics, and finally extending to a dependently typed
-   calculus in the vein of modern type theoretic presentations.
+### Explicit Substituions Part 2: Explicit Substitutions
+  [This](/BFPG/2025/ExplicitSubPart2/Talk) was a short talk given to the [Brisbane Functional Programming Group](https://lu.ma/bfpg)
 
 ### Explicit Substituions Part 1: STLC and Background
   [This](/BFPG/2025/IntroToPLTAndSTLC/Talk) was a short talk given to the 

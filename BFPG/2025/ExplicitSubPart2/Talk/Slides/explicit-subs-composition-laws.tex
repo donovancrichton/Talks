@@ -1,0 +1,55 @@
+\only<1>{
+\Def{Equational Theory: Composition Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ 1[\gamma] = \gamma_1 \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Variable Substitution}
+    {Substituting into variable 1 extracts the first component of the substitution}
+}
+
+\only<2>{
+\Def{Equational Theory: Composition Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ 1[\gamma] = \gamma_1 \]
+     \vspace*{-0.3cm}
+     \[ (M \; N)[\gamma] = M[\gamma] \; N[\gamma] \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Application Distribution}
+    {Substitution distributes over application}
+}
+
+\only<3>{
+\Def{Equational Theory: Composition Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ 1[\gamma] = \gamma_1 \]
+     \vspace*{-0.3cm}
+     \[ (M \; N)[\gamma] = M[\gamma] \; N[\gamma] \]
+     \vspace*{-0.3cm}
+     \[ (\lambda \alpha. M)[\gamma] = \lambda \alpha. M[\gamma^+] \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Abstraction Distribution}
+    {Substitution under lambda requires lifting: $\gamma^+ = (\gamma \circ \uparrow, 1)$}
+}
+
+\only<4>{
+\Def{Equational Theory: Composition Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ 1[\gamma] = \gamma_1 \]
+     \vspace*{-0.3cm}
+     \[ (M \; N)[\gamma] = M[\gamma] \; N[\gamma] \]
+     \vspace*{-0.3cm}
+     \[ (\lambda \alpha. M)[\gamma] = \lambda \alpha. M[\gamma^+] \]
+     \vspace*{-0.3cm}
+     \[ M[\gamma][\delta] = M[\gamma \circ \delta] \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Substitution Composition}
+    {Sequential substitution equals composition}
+}

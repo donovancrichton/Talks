@@ -1,0 +1,32 @@
+
+\only<1>{
+\Ex{$\diamond, \alpha, \beta, \theta \vdash \; \uparrow \; : 
+     \diamond, \alpha, \beta$}
+   {We add a new variable (weaken) the context, which shifts
+    everything else up by one index.} 
+}
+
+\only<2>{
+\Ex{$\diamond, \alpha, \beta, \theta \vdash \; \uparrow \; : 
+     \diamond, \alpha, \beta$}
+   {We add a new variable (weaken) the context, which shifts
+    everything else up by one index.} 
+\centering
+\begin{tikzpicture}
+  
+  \node (SRC) at (0, 0) {$\diamond, 
+                          \overset{2}{\alpha}, 
+                          \overset{1}{\beta}$};
+
+  \node (TGT) at (0, -4) {$\diamond, 
+                           \overset{3}{\alpha}, 
+                           \overset{2}{\beta}, 
+                           \overset{1}{\theta}$};
+
+  \path[draw, ->] (SRC) edge["$\uparrow$"] (TGT);
+\end{tikzpicture}
+
+}
+
+
+

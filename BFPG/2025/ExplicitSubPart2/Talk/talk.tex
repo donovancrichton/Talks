@@ -40,8 +40,10 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{trfrac}
+\usepackage[normalem]{ulem}
 
-\usetikzlibrary{arrows,automata,fit, shapes.geometric}
+\usetikzlibrary{arrows,automata,fit, shapes.geometric, quotes
+ ,positioning}
 
 \bibliographystyle{abbrvnat}
 
@@ -89,13 +91,13 @@
 \setbeamercolor{structure}{fg=black, bg=white}
 \setbeamercolor{frametitle}{fg=structure.bg, bg=structure.fg}
 
-\title{Explicit Substitutions Part 1: \\ STLC and Background \\
+\title{Explicit Substitutions Part 2: \\ Explicit Substitutions \\
        \small slides: 
        \href{https://github.com/donovancrichton/Talks}
             {https://github.com/donovancrichton/Talks}}
 \author{Donovan Crichton} 
   
-\date{April 2025}
+\date{August 2025}
 
 \begin{document}
  
@@ -103,138 +105,122 @@
 
 \begin{frame}[fragile]
   \frametitle{The goal of this talk}
-    \include{\SlidePath{goaloftalk.tex}}
+    \include{\SlidePath{goals.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Reading Syntax: Grammar}
-    \include{\SlidePath{syntax-grammar.tex}}
+  \frametitle{Untyped LC}
+    \include{\SlidePath{utlc.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Why does Grammar look like this?}
-    \include{\SlidePath{why-does-grammar-look-like-this.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{What about in programming?}
-    \include{\SlidePath{grammar-in-haskell.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Church Encoding - Naturals and Booleans}
-    \include{\SlidePath{church-encoding.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Church Encoding - Functions and Predicates}
-    \include{\SlidePath{church-functions-and-predicates.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Reading Syntax: Typing Rules}
-    \include{\SlidePath{typing-rules.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{The Program Context}
-    \include{\SlidePath{context.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Example Contexts}
-    \include{\SlidePath{example-contexts.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{The Function Type Formation Rule}
-    \include{\SlidePath{arrow-formation.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{The Function Term Formation Rule}
-    \include{\SlidePath{func-formation.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{The Function Term Elimination Rule}
-    \include{\SlidePath{app-elimination.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{STLC: Grammar}
+  \frametitle{STLC Grammar}
     \include{\SlidePath{stlc-grammar.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{STLC: Typing Rules/Judgements}
+  \frametitle{STLC Rules}
     \include{\SlidePath{stlc-typing-rules.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Free Variables}
-    \include{\SlidePath{free-variables.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{$\alpha$-equivalence/conversion}
-    \include{\SlidePath{alpha-equivalence.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Substitution}
-    \include{\SlidePath{substitution.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Capture Avoiding Substitution}
-    \include{\SlidePath{capture-avoiding-subs.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Computation}
-    \include{\SlidePath{computation.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{De Bruijn Indices: (1972) Lambda Calculus Notation
-     with Nameless Dummies ...}
-    \include{\SlidePath{de-bruijn.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{De-Bruijn Indices}
-    \include{\SlidePath{de-bruijn-indices.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Lift-and-shift}
-    \include{\SlidePath{lift-and-shift.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Explicit Substitutions: (1991) Explicit Substitutions}
-    \include{\SlidePath{1991explicitsub.tex}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Extending the STLC with Explicit Substitutions}
+  \frametitle{Explicit Substitution Grammar}
     \include{\SlidePath{explicit-subs-grammar.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Additional Terms}
-    \include{\SlidePath{additional-terms-sub.tex}}
+  \frametitle{Explicit Subs: Terms}
+    \include{\SlidePath{explicit-subs-terms.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Explicit Substitutions}
-    \include{\SlidePath{explicit-substitutions.tex}}
+  \frametitle{Explicit Subs: Subs}
+    \include{\SlidePath{explicit-subs-subs.tex}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Wrap Up}
-    \include{\SlidePath{wrap-up.tex}}
+  \frametitle{Example: Identity}
+    \include{\SlidePath{explicit-subs-id.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example: Weakening (Shift)}
+    \include{\SlidePath{explicit-subs-weakening.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example: Extension (Snoc)}
+    \include{\SlidePath{explicit-subs-extension.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Example: Composition}
+    \include{\SlidePath{explicit-subs-composition.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{A Note On Notation: Composition and Context}
+    \include{\SlidePath{explicit-subs-notation-composition.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Explicit Subs: Context Typing}
+    \include{\SlidePath{explicit-subs-context-typing.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Explicit Subs: Type Typing}
+    \include{\SlidePath{explicit-subs-type-typing.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Explicit Subs: Term Typing}
+    \include{\SlidePath{explicit-subs-term-typing.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Explicit Subs: Substitution Typing}
+    \include{\SlidePath{explicit-subs-substitution-typing.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Equational Theory: Category Laws}
+    \include{\SlidePath{explicit-subs-category-laws.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Equational Theory: Closure Laws}
+    \include{\SlidePath{explicit-subs-closure-laws.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Equational Theory: Weakening Laws}
+    \include{\SlidePath{explicit-subs-weakening-laws.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Equational Theory: Distribution Laws}
+    \include{\SlidePath{explicit-subs-distribution-laws.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Equational Theory: Extension Laws}
+    \include{\SlidePath{explicit-subs-extension-laws.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Equational Theory: Computation Laws}
+    \include{\SlidePath{explicit-subs-computation-laws.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Equational Theory Intuition}
+    \include{\SlidePath{equational-theory-intuition.tex}}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Conclusions}
+    \include{\SlidePath{conclusion.tex}}
 \end{frame}
 
 \end{document}

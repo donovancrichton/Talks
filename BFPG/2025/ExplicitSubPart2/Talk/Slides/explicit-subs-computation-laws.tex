@@ -1,0 +1,38 @@
+\only<1>{
+\Def{Equational Theory: Computation Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ (\lambda \alpha. M) \; N = M[id, N : \alpha] \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Beta Reduction}
+    {Application reduces by substituting the argument}
+}
+
+\only<2>{
+\Def{Equational Theory: Computation Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ (\lambda \alpha. M) \; N = M[id, N : \alpha] \]
+     \vspace*{-0.3cm}
+     \[ M = \lambda \alpha. (M[\uparrow] \; 1) \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Eta Expansion}
+    {Any term can be eta-expanded by shifting and applying to variable 1}
+}
+
+\only<3>{
+\Def{Equational Theory: Computation Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ (\lambda \alpha. M) \; N = M[id, N : \alpha] \]
+     \vspace*{-0.3cm}
+     \[ M = \lambda \alpha. (M[\uparrow] \; 1) \]
+     \vspace*{-0.3cm}
+     \[ 1[id, M : \alpha] = M \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Variable Beta}
+    {Substituting for variable 1 with extension gives the substituted term}
+}

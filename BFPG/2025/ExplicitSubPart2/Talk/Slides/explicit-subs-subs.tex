@@ -1,0 +1,105 @@
+
+\only<1>{
+\Def{Explicit Substitutions: Subs}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \gamma, \delta &::= id \; | \; \uparrow \; | \; \gamma, M : \alpha \; | \; \gamma \circ \delta
+            &\text{Substitutions}
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+}
+
+\only<2>{
+\Def{Explicit Substitutions: Subs}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \gamma, \delta &::= id \; | \; \uparrow \; | \; \gamma, M : \alpha \; | \; \gamma \circ \delta
+            &\text{Substitutions}
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+
+\Def{Intuition}
+    {
+      \begin{itemize}
+        \item $id$ is the identity substitution.
+      \end{itemize}
+    }
+}
+
+\only<3>{
+\Def{Explicit Substitutions: Subs}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \gamma, \delta &::= id \; | \; \uparrow \; | \; \gamma, M : \alpha \; | \; \gamma \circ \delta
+            &\text{Substitutions}
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+
+\Def{Intuition}
+    {
+      \begin{itemize}
+        \item $id$ is the identity substitution, mapping the
+              source context to itself.
+        \item $\uparrow$ is the weakening or shifting substituion.
+              We 'weaken' the context by one additional variable.
+      \end{itemize}
+    }
+}
+
+\only<4>{
+\Def{Explicit Substitutions: Subs}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \gamma, \delta &::= id \; | \; \uparrow \; | \; \gamma, M : \alpha \; | \; \gamma \circ \delta
+            &\text{Substitutions}
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+
+\Def{Intuition}
+    {
+      \begin{itemize}
+        \item $id$ is the identity substitution, mapping the
+              source context to itself.
+        \item $\uparrow$ is the weakening or shifting substituion.
+              We 'weaken' the context by one additional variable.
+        \item $\gamma, M$ is the substitution extension or snoc.
+              We extend the substitution by a term.
+      \end{itemize}
+    }
+}
+
+\only<5>{
+\Def{Explicit Substitutions: Subs}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       \gamma, \delta &::= id \; | \; \uparrow \; | \; \gamma, M : \alpha \; | \; \gamma \circ \delta
+            &\text{Substitutions}
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+
+\Def{Intuition}
+    {
+      \begin{itemize}
+        \item $id$ is the identity substitution, mapping the
+              source context to itself.
+        \item $\uparrow$ is the weakening or shifting substituion.
+              We 'weaken' the context by one additional variable.
+        \item $\gamma, M : \alpha$ is the substitution 
+              extension or snoc. We extend the substitution 
+              by a term.
+        \item $\gamma \circ \delta$ is the composition 
+              substitution where we compose two 
+              substitutions together
+      \end{itemize}
+    }
+}

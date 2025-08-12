@@ -1,0 +1,25 @@
+
+\only<1>{
+\Ex{$\diamond, \alpha, \beta, \theta \vdash id : 
+     \diamond, \alpha, \beta, \theta$}
+   {We move from source context to target context with no changes.} 
+}
+
+\only<2>{
+\Ex{$\diamond, \alpha, \beta, \theta \vdash id : 
+     \diamond, \alpha, \beta, \theta$}
+   {We move from source context to target context with no changes.} 
+\centering
+\begin{tikzpicture}
+  
+  \node (SRC) at (0, 0) {$\diamond, \alpha, \beta, \theta$};
+
+  \node (TGT) at (0, -4) {$\diamond, \alpha, \beta, \theta$};
+
+  \path[draw, ->] (SRC) edge["$id$"] (TGT);
+\end{tikzpicture}
+
+}
+
+
+

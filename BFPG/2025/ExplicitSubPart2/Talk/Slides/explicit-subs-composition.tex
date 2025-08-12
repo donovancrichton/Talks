@@ -1,0 +1,71 @@
+\only<1>{
+\Ex{Composition combines two substitutions}
+   {If $\Delta \vdash \gamma : \Gamma$ and $\Theta \vdash \delta : \Delta$\\
+    then $\Theta \vdash \gamma \circ \delta : \Gamma$} 
+}
+
+\only<2>{
+\Ex{Composition combines two substitutions}
+   {If $\Delta \vdash \gamma : \Gamma$ and $\Theta \vdash \delta : \Delta$\\
+    then $\Theta \vdash \gamma \circ \delta : \Gamma$} 
+\centering
+\begin{tikzpicture}
+  
+  \node (SRC) at (0, 0) {$\Gamma$};
+  \node (MID) at (0, -2) {$\Delta$};
+  \node (TGT) at (0, -4) {$\Theta$};
+
+  \path[draw, <-] (SRC) edge["$\gamma$"] (MID);
+  \path[draw, <-] (MID) edge["$\delta$"] (TGT);
+  
+  \node at (2, -2) {Read upward:};
+  \node at (2, -2.5) {$\delta$ then $\gamma$};
+\end{tikzpicture}
+
+}
+
+\only<3>{
+\Ex{Composition combines two substitutions}
+   {If $\Delta \vdash \gamma : \Gamma$ and $\Theta \vdash \delta : \Delta$\\
+    then $\Theta \vdash \gamma \circ \delta : \Gamma$} 
+\centering
+\begin{tikzpicture}
+  
+  \node (SRC) at (-3, 0) {$\Gamma$};
+  \node (MID) at (-3, -2) {$\Delta$};
+  \node (TGT) at (-3, -4) {$\Theta$};
+
+  \path[draw, <-] (SRC) edge["$\gamma$"] (MID);
+  \path[draw, <-] (MID) edge["$\delta$"] (TGT);
+  
+  \node at (0, -2) {$=$};
+  
+  \node (SRC2) at (3, 0) {$\Gamma$};
+  \node (TGT2) at (3, -4) {$\Theta$};
+  
+  \path[draw, <-] (SRC2) edge["$\gamma \circ \delta$"] (TGT2);
+\end{tikzpicture}
+
+}
+
+\only<4>{
+\Def{Example: Specific Composition}
+   {Consider $\diamond, \alpha, \beta \vdash \gamma : \diamond, \alpha$ 
+    and $\diamond, \alpha, \beta, \theta \vdash \delta : \diamond, \alpha, \beta$}
+\centering
+\begin{tikzpicture}
+  
+  \node (gamma_tgt) at (0, 0) {$\diamond, \alpha$};
+  \node (delta_src) at (0, -2) {$\diamond, \alpha, \beta$};  
+  \node (delta_tgt) at (0, -4) {$\diamond, \alpha, \beta, \theta$};
+
+  \path[draw, <-] (gamma_tgt) edge["$\gamma$"] (delta_src);
+  \path[draw, <-] (delta_src) edge["$\delta$"] (delta_tgt);
+  
+  \node at (5, -2) {Result: $\diamond, \alpha, \beta, \theta \vdash \gamma \circ \delta : \diamond, \alpha$};
+\end{tikzpicture}
+\Ex{Reading the diagram}
+   {Start from $\diamond, \alpha, \beta, \theta$, apply $\delta$ to get $\diamond, \alpha, \beta$,\\
+    then apply $\gamma$ to reach $\diamond, \alpha$}
+}
+

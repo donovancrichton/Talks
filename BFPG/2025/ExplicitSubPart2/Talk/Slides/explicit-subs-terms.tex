@@ -1,0 +1,103 @@
+
+\only<1>{
+\Def{Explicit Substitution Terms}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       M, N &::= 1 \; \, | \; M \; N \; | \; \lambda \alpha.M \; | \; M[\gamma]
+            &\text{Terms} 
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+}
+
+\only<2>{
+
+\Def{Explicit Substitution Terms}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       M, N &::= 1 \; \, | \; M \; N \; | \; \lambda \alpha.M \; | \; M[\gamma]
+            &\text{Terms} 
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+
+ \Def{Intuition}
+   {
+     \begin{itemize}
+       \item $M\;N$ is our standard application.
+     \end{itemize}
+   }
+}
+
+\only<3>{
+
+\Def{Explicit Substitution Terms}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       M, N &::= 1 \; \, | \; M \; N \; | \; \lambda \alpha.M \; | \; M[\gamma]
+            &\text{Terms} 
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+
+ \Def{Intuition}
+   {
+     \begin{itemize}
+       \item $M\;N$ is our standard application.
+       \item $\lambda \alpha.M$ abstraction refers to the type, but
+              no longer the variable.
+     \end{itemize}
+   }
+}
+
+\only<4>{
+
+\Def{Explicit Substitution Terms}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       M, N &::= 1 \; \, | \; M \; N \; | \; \lambda \alpha.M \; | \; M[\gamma]
+            &\text{Terms} 
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+
+ \Def{Intuition}
+   {
+     \begin{itemize}
+       \item $M\;N$ is our standard application.
+       \item $\lambda \alpha.M$ abstraction refers to the type, but
+              no longer the variable.
+       \item $1$ is the most recently bound De-Bruijn index 
+              variable.
+     \end{itemize}
+   }
+}
+
+\only<5>{
+
+\Def{Explicit Substitution Terms}
+    {
+     \vspace*{-0.5cm}
+     \begin{align*}
+       M, N &::= 1 \; \, | \; M \; N \; | \; \lambda \alpha.M \; | \; M[\gamma]
+            &\text{Terms} 
+     \end{align*}
+     \vspace*{-0.5cm}
+    }
+
+ \Def{Intuition}
+   {
+     \begin{itemize}
+       \item $M\;N$ is our standard application.
+       \item $\lambda \alpha.M$ abstraction refers to the type, but
+              no longer the variable.
+       \item $1$ is the most recently bound De-Bruijn index 
+              variable.
+       \item $M[\gamma]$ is term $M$ with substituion $\gamma$ applied.
+     \end{itemize}
+   }
+}

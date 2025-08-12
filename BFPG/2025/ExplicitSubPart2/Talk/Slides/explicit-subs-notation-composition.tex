@@ -1,0 +1,35 @@
+\only<1>{
+\Def{A Note On Notation: Composition and Context}
+    {
+     \textbf{Two notations for composition exist in the literature:}
+     \begin{itemize}
+       \item \textbf{Sequential (Abadi et al. original):} $\gamma \circ \delta$ means "first $\gamma$, then $\delta$"
+       \item \textbf{Categorical (most papers):} $\delta \circ \gamma$ means "first $\gamma$, then $\delta$"
+       \item In this talk: We use $\gamma \circ \delta$ meaning "first $\delta$, then $\gamma$"
+     \end{itemize}
+    }
+\Ex{Why the difference?}
+    {The original paper used sequential notation matching evaluation order.\\
+     Modern presentations use categorical notation matching function composition.}
+}
+
+\only<2>{
+\Def{A Note On Notation: Composition and Context}
+    {
+     \textbf{Critical: Pay attention to context order in substitution typing!}
+     \vspace{0.3cm}
+     
+     In the judgment $\Gamma \vdash \gamma : \Delta$:
+     \begin{itemize}
+       \item $\Delta$ is the \textbf{source} context (domain)
+       \item $\Gamma$ is the \textbf{target} context (codomain)  
+       \item $\gamma$ maps FROM $\Delta$ TO $\Gamma$
+     \end{itemize}
+    }
+\Ex{Composition typing rule}
+    {$\trfrac{\Gamma \vdash \gamma : \Delta \qquad \Delta \vdash \delta : \Theta}
+            {\Gamma \vdash \gamma \circ \delta : \Theta}$
+     
+     The middle context $\Delta$ must match!\\
+     Read: $\gamma \circ \delta$ takes us from $\Theta$ to $\Gamma$ via $\Delta$}
+}

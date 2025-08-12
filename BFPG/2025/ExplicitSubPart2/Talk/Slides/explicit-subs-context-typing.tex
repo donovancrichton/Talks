@@ -1,0 +1,23 @@
+\only<1>{
+\Def{Explicit Subs: Context Typing}
+    {\[ \trfrac[(\textit{Ctx-Empty})]
+             {}
+            {\vdash \diamond \; \text{ctx}}
+     \]
+    }
+}
+
+\only<2>{
+\Def{Explicit Subs: Context Typing}
+    {\[ \trfrac[(\textit{Ctx-Empty})]
+             {}
+            {\vdash \diamond \; \text{ctx}}
+     \]
+     \[
+        \trfrac[(\textit{Ctx-Extend})]
+             {\Gamma \vdash \alpha \Type}
+             {\vdash \Gamma, \alpha \; \text{ctx}} 
+     \]
+    }
+}
+

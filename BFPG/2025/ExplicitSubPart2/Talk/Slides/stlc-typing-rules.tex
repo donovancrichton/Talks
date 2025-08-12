@@ -2,7 +2,7 @@
 \Def{STLC: Typing Rules}
     {\[ \trfrac[(\textit{$\rightarrow$-Form})]
              {\Gamma \vdash \alpha \Type \qquad 
-              \Gamma, x \ofType \alpha \vdash \beta \Type}
+              \Gamma \vdash \beta \Type}
             {\Gamma \vdash \alpha \rightarrow \beta \Type}
      \]
     }
@@ -12,14 +12,14 @@
 \Def{STLC: Typing Rules}
     {\[ \trfrac[(\textit{$\rightarrow$-Form})]
              {\Gamma \vdash \alpha \Type \qquad 
-              \Gamma, x \ofType \alpha \vdash \beta \Type}
+              \Gamma \vdash \beta \Type}
             {\Gamma \vdash \alpha \rightarrow \beta \Type}
      \]
      \[
         \trfrac[(\textit{$\rightarrow$-Intro})]
              {\begin{trgather}
-                \Gamma \vdash alpha \rightarrow \beta \Type \qquad
-                \Gamma, x \ofType \alpha \vdash M \ofType \beta
+                \Gamma \vdash \alpha \rightarrow \beta \Type \qquad
+                \Gamma, x_m \ofType \alpha \vdash M \ofType \beta
               \end{trgather}}
              {\Gamma \vdash \lambda(x \ofType \alpha).M \ofType
                 \alpha \rightarrow \beta} 
@@ -31,14 +31,14 @@
 \Def{STLC: Typing Rules}
     {\[ \trfrac[(\textit{$\rightarrow$-Form})]
              {\Gamma \vdash \alpha \Type \qquad 
-              \Gamma, x \ofType \alpha \vdash \beta \Type}
+              \Gamma \vdash \beta \Type}
             {\Gamma \vdash \alpha \rightarrow \beta \Type}
      \]
      \[
         \trfrac[(\textit{$\rightarrow$-Intro})]
              {\begin{trgather}
                 \Gamma \vdash \alpha \rightarrow \beta \Type \qquad
-                \Gamma, x \ofType \alpha \vdash M \ofType \beta
+                \Gamma, x_m \ofType \alpha \vdash M \ofType \beta
               \end{trgather}}
              {\Gamma \vdash \lambda(x \ofType \alpha).M \ofType
                 \alpha \rightarrow \beta} 

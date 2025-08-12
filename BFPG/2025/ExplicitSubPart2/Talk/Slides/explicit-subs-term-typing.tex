@@ -1,0 +1,77 @@
+\only<1>{
+\Def{Explicit Subs: Term Typing}
+    {\[ \trfrac[(\textit{Var})]
+             {\vdash \Gamma, \alpha \; \text{ctx}}
+            {\Gamma, \alpha \vdash 1 \ofType \alpha}
+     \]
+    }
+}
+
+\only<2>{
+\Def{Explicit Subs: Term Typing}
+    {\[ \trfrac[(\textit{Var})]
+             {\vdash \Gamma, \alpha \; \text{ctx}}
+            {\Gamma, \alpha \vdash 1 \ofType \alpha}
+     \]
+     \[
+        \trfrac[(\textit{Abs})]
+             {\Gamma, \alpha \vdash M \ofType \beta}
+             {\Gamma \vdash \lambda \alpha.M \ofType 
+                \alpha \rightarrow \beta} 
+     \]
+    }
+}
+
+\only<3>{
+\Def{Explicit Subs: Term Typing}
+    {\[ \trfrac[(\textit{Var})]
+             {\vdash \Gamma, \alpha \; \text{ctx}}
+            {\Gamma, \alpha \vdash 1 \ofType \alpha}
+     \]
+     \[
+        \trfrac[(\textit{Abs})]
+             {\Gamma, \alpha \vdash M \ofType \beta}
+             {\Gamma \vdash \lambda \alpha.M \ofType 
+                \alpha \rightarrow \beta} 
+     \]
+     \[
+       \trfrac[(\textit{App})]
+         {\begin{trgather}
+          \Gamma \vdash M \ofType \alpha \rightarrow \beta \qquad
+          \Gamma \vdash N \ofType \alpha
+          \end{trgather}}
+         {\Gamma \vdash M \; N \ofType \beta}
+     \]
+    }
+}
+
+\only<4>{
+\Def{Explicit Subs: Term Typing}
+    {\[ \trfrac[(\textit{Var})]
+             {\vdash \Gamma, \alpha \; \text{ctx}}
+            {\Gamma, \alpha \vdash 1 \ofType \alpha}
+     \]
+     \[
+        \trfrac[(\textit{Abs})]
+             {\Gamma, \alpha \vdash M \ofType \beta}
+             {\Gamma \vdash \lambda \alpha.M \ofType 
+                \alpha \rightarrow \beta} 
+     \]
+     \[
+       \trfrac[(\textit{App})]
+         {\begin{trgather}
+          \Gamma \vdash M \ofType \alpha \rightarrow \beta \qquad
+          \Gamma \vdash N \ofType \alpha
+          \end{trgather}}
+         {\Gamma \vdash M \; N \ofType \beta}
+     \]
+     \[
+       \trfrac[(\textit{Subst})]
+         {\begin{trgather}
+          \Delta \vdash M \ofType \alpha \qquad
+          \Gamma \vdash \gamma \ofType \Delta
+          \end{trgather}}
+         {\Gamma \vdash M[\gamma] \ofType \alpha}
+     \]
+    }
+}

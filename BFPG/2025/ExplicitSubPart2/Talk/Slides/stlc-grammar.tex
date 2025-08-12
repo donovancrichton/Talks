@@ -4,16 +4,6 @@
     {
      \vspace*{-0.5cm}
      \begin{align*}
-     \end{align*}
-     \vspace*{-0.5cm}
-    }
-}
-
-\only<1>{
-\Def{The Simply Typed Lambda Calculus: Grammar}
-    {
-     \vspace*{-0.5cm}
-     \begin{align*}
        V    &::= \; x, y, z, \; ... 
             &\text{Variable Set}
      \end{align*}
@@ -65,7 +55,7 @@
             &\text{Types} \\
        M, N &::=  V \; \, | \; M \; N \; | \; \lambda(V : \alpha).M
             &\text{Terms} \\
-       \Gamma &::= \; \diamond \; | \; \Gamma, x : \alpha
+       \Gamma &::= \; \diamond \; | \; \Gamma, x_m : \alpha
             &\text{Contexts}
      \end{align*}
      \vspace*{-0.5cm}
@@ -84,12 +74,12 @@
             &\text{Types} \\
        M, N &::= V \; \, | \; M \; N \; | \; \lambda(V : \alpha).M
             &\text{Terms} \\
-       \Gamma &::= \; \diamond \; | \; \Gamma, x : \alpha
+       \Gamma &::= \; \diamond \; | \; \Gamma, x_m : \alpha
             &\text{Contexts}
      \end{align*}
      \vspace*{-0.5cm}
     }
-\Ex{Why $x : \alpha$ in the Contexts set, and not 
+\Ex{Why $x_m : \alpha$ in the Contexts set, and not 
    $V : \alpha$?}
    {}
 }
@@ -106,16 +96,13 @@
             &\text{Types} \\
        M, N &::= V \; \, | \; M \; N \; | \; \lambda(V : \alpha).M
             &\text{Terms} \\
-       \Gamma &::= \; \diamond \; | \; \Gamma, x : \alpha
+       \Gamma &::= \; \diamond \; | \; \Gamma, x_m : \alpha
             &\text{Contexts}
      \end{align*}
      \vspace*{-0.5cm}
     }
-\Ex{Why $x : \alpha$ in the Contexts set, and not 
+\Ex{Why $x_m : \alpha$ in the Contexts set, and not 
    $V : \alpha$?}
-   {$V$ is the variable set in our \textit{object} language, 
-    meaning it is part of the syntax of the language we are
-    defining. \\ $x$ represents a variable in our \text{meta}
-    language - the language we use to specify and reason about
-    our object language.}
+   {$x_m$ represents a variable in our \text{meta}
+    language}
 }

@@ -1,0 +1,54 @@
+\only<1>{
+\Def{Equational Theory: Closure Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ 1[id] = 1 \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Variable Identity}
+    {Applying $id$ to $1$ is $1$.}
+}
+
+\only<2>{
+\Def{Equational Theory: Closure Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ 1[id] = 1 \]
+     \vspace*{-0.3cm}
+     \[ 1[id, M : \alpha] = M \]
+    }
+\Ex{Variable Extension of Identity is Substitution.}
+    {Applying $id$ extended with $M$ to $1$ is $M$. This is our actual substitution being performed.}
+}
+
+\only<3>{
+\Def{Equational Theory: Closure Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ 1[id, M : \alpha] = M \]
+     \vspace*{-0.3cm}
+     \[ 1[\uparrow] = 1[\uparrow \circ \gamma] \]
+     \vspace*{-0.3cm}
+     \[ M[\gamma][\delta] = M[\delta \circ \gamma] \]
+     \vspace*{-0.3cm}
+    }
+\Ex{Closure (Application) is composition}
+    {Note pay careful attention to the order of sequential closures here.}
+}
+
+\only<4>{
+\Def{Equational Theory: Closure Laws}
+    {
+     \vspace*{-0.3cm}
+     \[ 1[id, M : \alpha] = M \]
+     \vspace*{-0.3cm}
+     \[ 1[\uparrow] = 1[\uparrow \circ \gamma] \]
+     \vspace*{-0.3cm}
+     \[ M[\gamma][\delta] = M[\delta \circ \gamma] \]
+     \vspace*{-0.3cm}
+     \[ (\delta \circ \uparrow), 1[\delta] = \delta \]
+    }
+\Ex{Weaken, Extension}
+    {A substitution is equal to its most recent element extended
+     on to the rest.}
+}
