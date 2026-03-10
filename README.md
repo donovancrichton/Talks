@@ -8,10 +8,10 @@ middle of my PhD in early 2023.
 
 ## Contents
 ### 2026
-  * [Algerbraic Structures As Interfaces]{#algebraic-structures-as-interfaces)
+  * [Algerbraic Structures As Interfaces](#algebraic-structures-as-interfaces)
 ### 2025
-  * [Explicit Substitutions Part 2: Explicit Substitutions](#explicit-substitutions-part-2:explicit-substitutions)
-  * [Explicit Substitutions Part 1: STLC and Background](#explicit-substitutions-part-1:-stlc-and-background)
+  * [Explicit Substitutions Part 2: Explicit Substitutions](#explicit-substitutions-part-2\:explicit-substitutions)
+  * [Explicit Substitutions Part 1: STLC and Background](#explicit-substitutions-part-1\:-stlc-and-background)
 
 ### 2024
   * [Enforcing a discipline of Total Functional Programming
