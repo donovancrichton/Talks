@@ -8,7 +8,8 @@ middle of my PhD in early 2023.
 
 ## Contents
 ### 2026
-  * [Algerbraic Structures As Interfaces](#algebraic-structures-as-interfaces)
+  * [Algebraic Structures As Interfaces](#algebraic-structures-as-interfaces)
+
 ### 2025
   * [Explicit Substitutions Part 2: Explicit Substitutions](#explicit-substitutions-part-2\:explicit-substitutions)
   * [Explicit Substitutions Part 1: STLC and Background](#explicit-substitutions-part-1\:-stlc-and-background)
@@ -28,8 +29,8 @@ middle of my PhD in early 2023.
 The link to each talk is usually the first word of the 
 description.
 
-### Algerbraic Structures As Interfaces
-  [This](/BFPG/2026/AlgerbraicStructuresAsInterfaces) is a short talk at the [Brisbane Functional Programming Group](https://lu.ma/bfpg)
+### Algebraic Structures As Interfaces
+  [This](/BFPG/2026/AlgebraicStructuresAsInterfaces) is a short talk at the [Brisbane Functional Programming Group](https://lu.ma/bfpg)
   covering the relationship between algerbraic structures in mathematics and interfaces/protocols/traits/typeclasses in 
   functional programming.
 
