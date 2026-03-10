@@ -1,0 +1,148 @@
+\only<1>{
+  \textcolor{black}{If the derivations (true statements) hold
+                    above the line (premise), 
+                    \\ then the derivations hold below the 
+                    line (conclusion).}
+  \Def{The Type Formation Rule}
+      {
+    \[ \boxed{\trfrac[(\textit{Ty-Arrow})]
+             {\qquad \qquad \qquad \qquad}
+             {\qquad \qquad \qquad \qquad}}
+    \]
+      }
+}
+
+\only<2>{
+  \textcolor{black}{...from an arbitrary context, $\Gamma$
+                   }
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\boxed{\Gamma} \qquad \qquad \qquad}
+          {\qquad \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<3>{
+  \textcolor{black}{...we may derive (produce, obtain...)
+                   }
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \boxed{\vdash} \qquad \qquad \qquad}
+          {\qquad \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<4>{
+  \textcolor{black}{...an arbitrary type, called $A$}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash \boxed{A \Type} \qquad \qquad \qquad}
+          {\qquad \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<5>{
+  \textcolor{black}{AND}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash A \Type \boxed{\qquad} \qquad \qquad}
+          {\qquad \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<6>{
+  \textcolor{black}{...From the same arbitrary context $\Gamma$, extended with a variable 'x' of type $A$}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash A \Type \qquad \boxed{\Gamma, x \ofType A} \qquad \qquad}
+          {\qquad \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<7>{
+  \textcolor{black}{...we may derive}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash A \Type 
+           \qquad \Gamma, x \ofType A \boxed{\vdash} 
+           }
+          {\qquad \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<8>{
+  \textcolor{black}{some arbitrary type $B$.}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash A \Type 
+           \qquad \Gamma, x \ofType A \vdash \boxed{B \Type}
+           }
+          {\qquad \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<9>{
+  \textcolor{black}{Then, from that arbitrary $\Gamma$ (program scope)}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash A \Type 
+           \qquad \Gamma, x \ofType A \vdash B \Type
+           }
+          {\boxed{\Gamma} \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<10>{
+  \textcolor{black}{...we may derive}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash A \Type 
+           \qquad \Gamma, x \ofType A \vdash B \Type
+           }
+          {\Gamma \boxed{\vdash} \qquad \qquad \qquad}
+    \]
+      }
+}
+
+\only<11>{
+  \textcolor{black}{...an arrow type between them}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash A \Type 
+           \qquad \Gamma, x \ofType A \vdash B \Type
+           }
+          {\Gamma \vdash \boxed{A \rightarrow B} \qquad \qquad}
+    \]
+      }
+}
+
+\only<12>{
+  \textcolor{black}{...that is also a type.}
+  \Def{The Type Formation Rule}
+      {
+    \[ \trfrac[(\textit{Ty-Arrow})]
+          {\Gamma \vdash A \Type 
+           \qquad \Gamma, x \ofType A \vdash B \Type
+           }
+          {\Gamma \vdash A \rightarrow B \boxed{\Type}}
+    \]
+      }
+}

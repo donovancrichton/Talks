@@ -1,0 +1,63 @@
+\only<1>{
+\textcolor{black}{The current scope of our program.}
+\Def{The Program Context}
+    {\vspace{-0.5cm}
+     \begin{align*}
+       \Gamma, \Delta &::= \diamond \; | \; \Gamma, x \; \colon A
+     \end{align*}
+    }
+}
+
+\only<2>{
+\textcolor{black}{Our context called $\Gamma$ or $\Delta$, etc...}
+\Def{The Program Context}
+    {\vspace{-0.5cm}
+     \begin{align*}
+       \boxed{\Gamma, \Delta} &::= \diamond \; | \; \Gamma, x \; \colon A
+     \end{align*}
+    }
+}
+
+\only<3>{
+\textcolor{black}{Is defined by:}
+\Def{The Program Context}
+    {\vspace{-0.5cm}
+     \begin{align*}
+       \Gamma, \Delta &\boxed{::=} \diamond \; | \; \Gamma, x \; \colon A
+     \end{align*}
+    }
+}
+
+\only<4>{
+\textcolor{black}{Empty (like the empty list) 
+  represented by $\diamond$.}
+\Def{The Program Context}
+    {\vspace{-0.5cm}
+     \begin{align*}
+       \Gamma, \Delta ::= \boxed{\diamond} \; | \; \Gamma, x \; \colon A
+     \end{align*}
+    }
+}
+
+\only<5>{
+\textcolor{black}{Or,}
+\Def{The Program Context}
+    {\vspace{-0.5cm}
+     \begin{align*}
+      \Gamma, \Delta ::= \diamond \; \boxed{|} \; \Gamma, x \; \colon A
+     \end{align*}
+    }
+}
+
+\only<6>{
+\textcolor{black}{Our program scope, extended with a 
+           variable 'x' of type 'A'.} 
+\Def{The Program Context}
+    {\vspace{-0.5cm}
+     \begin{align*}
+      \Gamma, \Delta ::= \diamond \; | \; \boxed{\Gamma, x \; \colon A}
+     \end{align*}
+    }
+}
+
+

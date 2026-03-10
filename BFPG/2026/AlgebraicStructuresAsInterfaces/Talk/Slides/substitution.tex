@@ -1,0 +1,58 @@
+
+\only<1>{
+\Def{$M[x := N]$ or $M[N / x]$ or $M[x \mapsto N]$}
+    {Substitution is a \textit{meta} operation that allows us to
+    perform computation with lambda calculus. We may replace  
+    (almost) any variable $x$ that occurs in term $M$ with 
+    term $N$.}
+}
+
+\only<2>{
+\Def{$M[x := N]$ or $M[N / x]$ or $M[x \mapsto N]$}
+    {Substitution is a \textit{meta} operation that allows us to
+    perform computation with lambda calculus. We may replace  
+    (almost) any variable $x$ that occurs in term $M$ with 
+    term $N$.}
+\Ex{Example Substitutions}
+   {\begin{align*}
+     (\lambda(x : \mathbb{N}).2 + x)[3 / x] &= 
+       \lambda(x : \mathbb{N}).2 + 3
+    \end{align*}
+   }
+}
+
+\only<3>{
+\Def{$M[x := N]$ or $M[N / x]$ or $M[x \mapsto N]$}
+    {Substitution is a \textit{meta} operation that allows us to
+    perform computation with lambda calculus. We may replace  
+    (almost) any variable $x$ that occurs in term $M$ with 
+    term $N$.}
+\Ex{Example Substitutions}
+   {\begin{align*}
+     (\lambda(x : \mathbb{N}).2 + x)[3 / x] &= 
+       \lambda(x : \mathbb{N}).2 + 3 \\
+     (\lambda(x : \beta \rightarrow \beta).x)
+       [\lambda(y : \beta).y / x] &= 
+      \lambda(x : \beta \rightarrow \beta).\lambda(y : \beta).y
+    \end{align*}
+   }
+}
+
+\only<4>{
+\Def{$M[x := N]$ or $M[N / x]$ or $M[x \mapsto N]$}
+    {Substitution is a \textit{meta} operation that allows us to
+    perform computation with lambda calculus. We may replace  
+    (almost) any variable $x$ that occurs in term $M$ with 
+    term $N$.}
+\Ex{Example Substitutions}
+   {\begin{align*}
+     (\lambda(x : \mathbb{N}).2 + x)[3 / x] &= 
+       \lambda(x : \mathbb{N}).2 + 3 \\
+     (\lambda(x : \beta \rightarrow \beta).x)
+       [\lambda(y : \beta).y / x] &= 
+      \lambda(x : \beta \rightarrow \beta).\lambda(y : \beta).y \\
+      (\lambda(x : \beta).y)[x / y] &\neq \lambda(x : \beta).x
+    \end{align*}
+
+   }
+}
